@@ -1,10 +1,10 @@
-package arbolbinarioTDA;
+package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * Clase que representa una estructura de datos tipo Árbol Binario de Búsqueda
+ * Clase que representa una estructura de datos tipo ï¿½rbol Binario de Bï¿½squeda
  * 
  *
  * @param <T>
@@ -15,15 +15,15 @@ public class ArbolBinario<T extends Comparable<T>> {
 	private int peso;
 	
 	/**
-	 * Verifica si un árbol está vacío
-	 * @return true si está vacío
+	 * Verifica si un ï¿½rbol estï¿½ vacï¿½o
+	 * @return true si estï¿½ vacï¿½o
 	 */
 	public boolean estaVacio() {
 		return raiz==null;
 	}
 	
 	/**
-	 * Agrega un nuevo elemento al árbol
+	 * Agrega un nuevo elemento al ï¿½rbol
 	 * @param elemento Nuevo dato
 	 * @return true si lo pudo guardar
 	 */
@@ -37,7 +37,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Realiza el recorrido inorden en el árbol binario
+	 * Realiza el recorrido inorden en el ï¿½rbol binario
 	 */
 	public void inorden() {
 		inorden(raiz);
@@ -45,8 +45,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Realiza el recorrido inorden en el árbol binario
-	 * @param n Nodo raíz
+	 * Realiza el recorrido inorden en el ï¿½rbol binario
+	 * @param n Nodo raï¿½z
 	 */
 	private void inorden(Nodo<T> n) {
 		if(n!=null) {
@@ -57,7 +57,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Realiza el recorrido preorden en el árbol binario
+	 * Realiza el recorrido preorden en el ï¿½rbol binario
 	 */
 	public void preorden() {
 		preorden(raiz);
@@ -65,8 +65,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Realiza el recorrido preorden en el árbol binario
-	 * @param n Nodo raíz
+	 * Realiza el recorrido preorden en el ï¿½rbol binario
+	 * @param n Nodo raï¿½z
 	 */
 	private void preorden(Nodo<T> n) {
 		if(n!=null) {
@@ -77,7 +77,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 
 	/**
-	 * Realiza el recorrido postorden en el árbol binario
+	 * Realiza el recorrido postorden en el ï¿½rbol binario
 	 */
 	public void postorden() {
 		postorden(raiz);
@@ -85,8 +85,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Realiza el recorrido postorden en el árbol binario
-	 * @param n Nodo raíz
+	 * Realiza el recorrido postorden en el ï¿½rbol binario
+	 * @param n Nodo raï¿½z
 	 */
 	private void postorden(Nodo<T> n) {
 		if(n!=null) {			
@@ -97,8 +97,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Vetifica si un elemento existe en el árbol binario
-	 * @param n Nodo raíz
+	 * Vetifica si un elemento existe en el ï¿½rbol binario
+	 * @param n Nodo raï¿½z
 	 * @param elemento Elemento a buscar
 	 * @return true si lo encuentra
 	 */
@@ -116,9 +116,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Cuenta todos los elementos que hay en el árbol
-	 * @param n Nodo raíz
-	 * @return Peso del árbol
+	 * Cuenta todos los elementos que hay en el ï¿½rbol
+	 * @param n Nodo raï¿½z
+	 * @return Peso del ï¿½rbol
 	 */
 	public int obtenerPeso(Nodo<T> n) {
 		
@@ -130,8 +130,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Devuelve la altura del árbol
-	 * @param n Nodo raíz
+	 * Devuelve la altura del ï¿½rbol
+	 * @param n Nodo raï¿½z
 	 * @return Altura
 	 */
 	public int obtenerAltura(Nodo<T> n, int prof) {
@@ -149,8 +149,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Retorna el nivel de un elemento dentro del árbol
-	 * @param n Nodo raíz
+	 * Retorna el nivel de un elemento dentro del ï¿½rbol
+	 * @param n Nodo raï¿½z
 	 * @param elemento Elemento a buscar
 	 * @param nivel Nivel inicial
 	 * @return Nivel del elemento
@@ -169,9 +169,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Cuenta el número de Hojas del árbol
-	 * @param n Nodo raíz
-	 * @return hojas del árbol
+	 * Cuenta el nï¿½mero de Hojas del ï¿½rbol
+	 * @param n Nodo raï¿½z
+	 * @return hojas del ï¿½rbol
 	 */
 	public int contarHojas(Nodo<T> n) {
 		
@@ -186,7 +186,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Retorna el valor más pequeño del árbol
+	 * Retorna el valor mï¿½s pequeï¿½o del ï¿½rbol
 	 * @return Menor
 	 */
 	public T obtenerMenor() {
@@ -201,8 +201,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Retorna el valor más pequeño del árbol
-	 * @param n Nodo raíz
+	 * Retorna el valor mï¿½s pequeï¿½o del ï¿½rbol
+	 * @param n Nodo raï¿½z
 	 * @return Menor
 	 */
 	public T obtenerMenor(Nodo<T> n) {
@@ -213,9 +213,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Imprime el árbol de manera horizontal
-	 * @param n Nodo raíz
-	 * @param nivel Nivel de cada nodo, determina el número de espacios
+	 * Imprime el ï¿½rbol de manera horizontal
+	 * @param n Nodo raï¿½z
+	 * @param nivel Nivel de cada nodo, determina el nï¿½mero de espacios
 	 */
 	public void imprimirHorizontal(Nodo<T> n, int nivel) {
 		
@@ -236,7 +236,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Elimina un elemento del árbol
+	 * Elimina un elemento del ï¿½rbol
 	 * @param elemento Elemento a borrar
 	 */
 	public void eliminar(T elemento) {
@@ -244,8 +244,8 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Elimina un elemento del árbol
-	 * @param n Nodo raíz
+	 * Elimina un elemento del ï¿½rbol
+	 * @param n Nodo raï¿½z
 	 * @param elemento Elemento a buscar para borrar
 	 */
 	private void eliminar(Nodo<T> n, T elemento) {
@@ -263,7 +263,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Elimina un Nodo del árbol
+	 * Elimina un Nodo del ï¿½rbol
 	 * @param n Nodo a eliminar
 	 */
 	private void eliminar(Nodo<T> n) {
@@ -316,7 +316,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Imprime el árbol usando el recorrido en amplitud (por niveles)
+	 * Imprime el ï¿½rbol usando el recorrido en amplitud (por niveles)
 	 */
 	public void imprimirAmplitud() {
 		
@@ -342,7 +342,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Cuenta el número de hojas del árbol sin recursividad
+	 * Cuenta el nï¿½mero de hojas del ï¿½rbol sin recursividad
 	 * @return Hojas
 	 */
 	public int contarHojas() {
@@ -374,7 +374,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Obtiene la altura del árbol sin recursividad
+	 * Obtiene la altura del ï¿½rbol sin recursividad
 	 * @return altura
 	 */
 	public int obtenerAltura() {
@@ -405,9 +405,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 	
 	
 	/**
-	 * Obtiene el nodo más grande de un subárbol
+	 * Obtiene el nodo mï¿½s grande de un subï¿½rbol
 	 * @param n Nodo Izquierdo del subarbol
-	 * @return Nodo más grande
+	 * @return Nodo mï¿½s grande
 	 */
 	public Nodo<T> obtenerNodoMayor(Nodo<T> n){
 		while(n.getDerecho()!=null) {
@@ -417,9 +417,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Obtiene el nodo más pequeño de un subárbol
+	 * Obtiene el nodo mï¿½s pequeï¿½o de un subï¿½rbol
 	 * @param n Nodo Derecho del subarbol
-	 * @return Nodo más pequeño
+	 * @return Nodo mï¿½s pequeï¿½o
 	 */
 	public Nodo<T> obtenerNodoMenor(Nodo<T> n){
 		while(n.getIzquierdo()!=null) {

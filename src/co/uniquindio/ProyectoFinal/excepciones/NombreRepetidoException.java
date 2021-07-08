@@ -1,2 +1,4 @@
-package co.uniquindio.ProyectoFinal.excepciones;public class NombreRepetidoException {
+package co.uniquindio.ProyectoFinal.excepciones;
+
+public class NombreRepetidoException {
 }

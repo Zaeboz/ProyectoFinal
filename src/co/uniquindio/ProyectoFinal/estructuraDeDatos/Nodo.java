@@ -1,7 +1,7 @@
-package arbolbinarioTDA;
+package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
 /**
- * Clase que representa un Nodo del árbol binario
+ * Clase que representa un Nodo del ï¿½rbol binario
  * 
  *
  * @param <T>
@@ -26,7 +26,7 @@ public class Nodo<T extends Comparable<T>> {
 	}
 	
 	/**
-	 * Agrega un nuevo elemento en el árbol
+	 * Agrega un nuevo elemento en el ï¿½rbol
 	 * @param elemento Nuevo dato
 	 * @return true si lo pudo guardar
 	 */

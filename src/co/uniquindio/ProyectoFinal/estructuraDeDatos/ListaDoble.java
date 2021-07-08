@@ -354,7 +354,17 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 		return new IteradorListaDoble (nodoPrimero);
 	}
 
-	protected class IteradorListaDoble implements Iterator<T>{
+    public boolean contiene(T dato) {
+		for(int i = 0; i < tamanio; i++){
+			NodoDoble nodoAux = nodoPrimero;
+			if(nodoAux==dato){
+				return true;
+			}
+		}
+		return false;
+    }
+
+    protected class IteradorListaDoble implements Iterator<T>{
 
 		private NodoDoble<T> nodo;
 		private int posicion;
