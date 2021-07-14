@@ -1,6 +1,8 @@
 package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
-public class NodoGrafo <T>{
+import java.io.Serializable;
+
+public class NodoGrafo <T> implements Serializable {
 
     private ListaDoble<Arista> grupoNodos;
     private T valorNodo;

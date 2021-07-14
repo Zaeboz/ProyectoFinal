@@ -1,4 +1,4 @@
-package co.uniquindio.ProyectoFinal;
+package co.uniquindio.ProyectoFinal.appliacation;
 
 import javafx.application.Application;
 import javafx.stage.Stage;

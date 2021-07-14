@@ -1,2 +1,4 @@
-package co.uniquindio.ProyectoFinal.modelo;public class Publicaciom {
+package co.uniquindio.ProyectoFinal.modelo;
+
+public class Publicacion {
 }

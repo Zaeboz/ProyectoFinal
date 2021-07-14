@@ -6,10 +6,11 @@ package co.uniquindio.ProyectoFinal.estructuraDeDatos;
  * Si el peso de una arista no se especifica, su valor es 1. Esto permite representar grafos uniformes.
  */
 
-public class Arista implements Comparable<Arista>
-{
+import java.io.Serializable;
+
+public class Arista implements Comparable<Arista>, Serializable {
+
     private NodoGrafo nodo1, nodo2;
-    private int peso;
 
     /**
      * Constructor de un objeto Arista uniforme
@@ -44,8 +45,6 @@ public class Arista implements Comparable<Arista>
             this.nodo1 = nodo2;
             this.nodo2 = nodo1;
         }
-
-        this.peso = peso;
 
     }
 
@@ -84,33 +83,16 @@ public class Arista implements Comparable<Arista>
     }
 
     /**
-     * @return el valor de tipo entero del atributo peso
-     **/
-    public int getPeso()
-    {
-        return this.peso;
-    }
-
-    /**
-     * Modificador del atributo peso
-     *
-     * @param peso Nuevo coste de la arista
-     **/
-    public void setPeso(int peso)
-    {
-        this.peso = peso;
-    }
-
-    /**
-     * Comparamos el coste de esta arista con el coste
-     * de otra arista como parámentro de entrada llamada arista2
+     * Comparamos los nodos de la arista2 con los nodos de la arista actual
      *
      * @param arista2 Arista con la que comparamos nuestra arista actual
      * @return int. Se devuelve 0 en caso de que ambas tengan el mismo peso
      **/
     public int compareTo(Arista arista2)
     {
-        return this.peso - arista2.peso;
+        if(arista2.getNodo1() != this.nodo1 && arista2.getNodo2() != this.nodo2)
+            return 0;
+        else return 1;
     }
 
     /**
@@ -118,7 +100,7 @@ public class Arista implements Comparable<Arista>
      **/
     public String toString()
     {
-        return "({" + this.nodo1 + ", " + this.nodo2 + "}, "+ this.peso  +")";
+        return "({" + this.nodo1 + ", " + this.nodo2 + "}";
     }
 
 
