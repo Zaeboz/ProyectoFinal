@@ -6,3 +6,4 @@ public class Categoria implements Serializable {
     String nombre;
     String a;
 }
+
