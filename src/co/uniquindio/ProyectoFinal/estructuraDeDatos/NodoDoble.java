@@ -20,8 +20,8 @@ public class NodoDoble<T> implements Serializable{
 
 
 	/**
-	 * Constructor de la clase Nodo
-	 * @paramdatoElemento que se guarda en el Nodo
+	 * Constructor de la clase NodoArbolBinario
+	 * @paramdatoElemento que se guarda en el NodoArbolBinario
 	 */
 	public NodoDoble(T valorNodo) {
 		this.valorNodo = valorNodo;
@@ -33,9 +33,9 @@ public class NodoDoble<T> implements Serializable{
 
 
 	/**
-	 * Constructor de la clase Nodo
-	 * @param dato Elemento que se guarda en el Nodo
-	 * @param siguiente Enlace al siguiente Nodo
+	 * Constructor de la clase NodoArbolBinario
+	 * @param dato Elemento que se guarda en el NodoArbolBinario
+	 * @param siguiente Enlace al siguiente NodoArbolBinario
 	 */
 	public NodoDoble(T dato, NodoDoble<T> siguiente,NodoDoble<T> anterior) {
 		super();
@@ -45,7 +45,7 @@ public class NodoDoble<T> implements Serializable{
 	}
 
 
-	//Metodos get y set de la clase Nodo
+	//Metodos get y set de la clase NodoArbolBinario
 
 	public NodoDoble<T> getSiguienteNodo() {
 		return siguienteNodo;

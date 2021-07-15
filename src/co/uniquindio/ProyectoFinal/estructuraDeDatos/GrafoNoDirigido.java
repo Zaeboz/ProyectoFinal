@@ -5,12 +5,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GrafoNoDirigido <T> implements Serializable {
+public class GrafoNoDirigido implements Serializable {
 
-    private HashMap<T, NodoGrafo> nodos;
+    private HashMap<String, NodoGrafo> nodos;
     private HashMap<Integer, Arista> aristas;
 
-    public GrafoNoDirigido(HashMap<T, NodoGrafo> nodos, HashMap<Integer, Arista> aristas) {
+    public GrafoNoDirigido(HashMap<String, NodoGrafo> nodos, HashMap<Integer, Arista> aristas) {
         this.nodos = nodos;
         this.aristas = aristas;
     }
@@ -73,7 +73,7 @@ public class GrafoNoDirigido <T> implements Serializable {
      * @param valor Distintivo de cada vértice
      * @return NodoGrafo Devuelve el vértice asociado a la etiqueta
      **/
-    public NodoGrafo getVertice(T valor)
+    public NodoGrafo getVertice(String valor)
     {
         return this.nodos.get(valor);
     }
@@ -92,7 +92,7 @@ public class GrafoNoDirigido <T> implements Serializable {
             return false;
         }
 
-        nodos.put((T) nodo.getValorNodo(), nodo);
+        nodos.put((String) nodo.getValorNodo(), nodo);
         return true;
     }
 
@@ -104,7 +104,7 @@ public class GrafoNoDirigido <T> implements Serializable {
      * @param valor Cadena distintiva de cada vértice
      * @return Vertice. Devuelve el vértice eliminado
      **/
-    public NodoGrafo eliminarVertice(T valor)
+    public NodoGrafo eliminarVertice(String valor)
     {
         NodoGrafo nodoAux = nodos.remove(valor);
 
@@ -118,7 +118,7 @@ public class GrafoNoDirigido <T> implements Serializable {
      * @return Set<String>. Devuelve  los valores, que son el distintivo
      * único de cada objeto Vertice en el Grafo
      **/
-    public Set<T> nodosKeys()
+    public Set<String> nodosKeys()
     {
         return this.nodos.keySet();
     }

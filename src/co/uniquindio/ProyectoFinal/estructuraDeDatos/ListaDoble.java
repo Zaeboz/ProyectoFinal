@@ -101,7 +101,7 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 	}
 
 
-	//Obtener Nodo el valor de un Nodo
+	//Obtener NodoArbolBinario el valor de un NodoArbolBinario
 	public T obtenerValorNodo(int indice) {
 
 		NodoDoble<T> nodoTemporal = null;
@@ -249,9 +249,9 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 
 
 	/**
-	 * Devuelve el Nodo de una lista dada su posici�n
-	 * @param indice �ndice para obtener el Nodo
-	 * @return Nodo objeto
+	 * Devuelve el NodoArbolBinario de una lista dada su posici�n
+	 * @param indice �ndice para obtener el NodoArbolBinario
+	 * @return NodoArbolBinario objeto
 	 */
 	private NodoDoble<T> obtenerNodo(int indice) {
 
@@ -272,7 +272,7 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 	/**
 	 * Devuelve un nodo que contenga un dato espec�fico
 	 * @param dato Dato a buscar
-	 * @return Nodo
+	 * @return NodoArbolBinario
 	 */
 	private NodoDoble<T> buscarNodo(T dato){
 
@@ -371,7 +371,7 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 
 		/**
 		 * Constructor de la clase Iterador
-		 * @para Primer Nodo de la lista
+		 * @para Primer NodoArbolBinario de la lista
 		 */
 		public IteradorListaDoble(NodoDoble<T> nodo) {
 			this.nodo = nodo;

@@ -1,132 +1,58 @@
 package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
-/**
- * Clase que representa un Nodo del �rbol binario
- * 
- *
- * @param <T>
- */
-public class Nodo<T extends Comparable<T>> {
 
-	private Nodo<T> izquierdo, derecho;
-	private Nodo<T> padre;
-	private T elemento;
-	
-	/**
-	 * Constructor de la clase
-	 * @param elemento Dato del nodo
-	 */
-	public Nodo(T elemento) {
-		this.elemento = elemento;
-	}
-	
-	public Nodo(T elemento, Nodo<T> padre) {
-		this.elemento = elemento;
-		this.padre = padre;
-	}
-	
-	/**
-	 * Agrega un nuevo elemento en el �rbol
-	 * @param elemento Nuevo dato
-	 * @return true si lo pudo guardar
-	 */
-	public boolean agregar(T nuevo) 
-	{
-		if( nuevo.compareTo( elemento ) < 0 ) 
-		{
-			if(izquierdo==null) {
-				izquierdo = new Nodo<>(nuevo, this);
-				return true;
-			}else {
-				return izquierdo.agregar(nuevo);
-			}
-		}
-		else 
-		{
-			if( nuevo.compareTo( elemento ) > 0 ) 
-			{
-				if(derecho==null) {
-					derecho = new Nodo<>(nuevo, this);
-					return true;
-				}else {
-					return derecho.agregar(nuevo);
-				}
-			}
-		}
-		
-		return false;
-	}
-	
-	/**
-	 * Determina si un Nodo es una Hoja
-	 * @return true si es Hoja
-	 */
-	public boolean esHoja() {
-		return izquierdo == null && derecho == null;
-	}
+import java.io.Serializable;
 
-	/**
-	 * 
-	 * @return
-	 */
-	public boolean tieneUnHijo() {
-		return (izquierdo!=null && derecho==null) || (derecho!=null && izquierdo==null );
-	}
-	
-	/**
-	 * @return the izq
-	 */
-	public Nodo<T> getIzquierdo() {
-		return izquierdo;
-	}
+public class Nodo<T> implements Serializable {
 
-	/**
-	 * @param izq the izq to set
-	 */
-	public void setIzquierdo(Nodo<T> izq) {
-		this.izquierdo = izq;
-	}
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @return the der
-	 */
-	public Nodo<T> getDerecho() {
-		return derecho;
-	}
+    private Nodo<T> siguienteNodo = null;
+    private T valorNodo = null;
 
-	/**
-	 * @param der the der to set
-	 */
-	public void setDerecho(Nodo<T> der) {
-		this.derecho = der;
-	}
 
-	/**
-	 * @return the elemento
-	 */
-	public T getElemento() {
-		return elemento;
-	}
+    /**
+     * Constructor de la clase Nodo
+     * @paramdatoElemento que se guarda en el Nodo
+     */
+    public Nodo(T valorNodo) {
+        this.valorNodo = valorNodo;
+    }
 
-	/**
-	 * @param elemento the elemento to set
-	 */
-	public void setElemento(T elemento) {
-		this.elemento = elemento;
-	}
+    /**
+     * Constructor de la clase Nodo
+     * @param dato Elemento que se guarda en el Nodo
+     * @param siguiente Enlace al siguiente Nodo
+     */
+    public Nodo(T dato, Nodo<T> siguiente) {
+        super();
+        this.valorNodo = dato;
+        this.siguienteNodo = siguiente;
+    }
 
-	/**
-	 * @return the padre
-	 */
-	public Nodo<T> getPadre() {
-		return padre;
-	}
+    public Nodo() {
 
-	/**
-	 * @param padre the padre to set
-	 */
-	public void setPadre(Nodo<T> padre) {
-		this.padre = padre;
-	}
-	
+    }
+
+
+    //Metodos get y set de la clase Nodo
+
+    public Nodo<T> getSiguienteNodo() {
+        return siguienteNodo;
+    }
+
+
+    public void setSiguienteNodo(Nodo<T> siguienteNodo) {
+        this.siguienteNodo = siguienteNodo;
+    }
+
+
+    public T getValorNodo() {
+        return valorNodo;
+    }
+
+
+    public void setValorNodo(T valorNodo) {
+        this.valorNodo = valorNodo;
+    }
 }
