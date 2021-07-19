@@ -18,6 +18,7 @@ public class Proyecto implements Serializable {
      public Proyecto() {
      }
 
+
      public int crearVendedores(String nombre){return 0;}
 
      public Vendedor buscarVendedor(String nombre){return null;}

@@ -1,18 +1,33 @@
 package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
+import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-public class GrafoNoDirigido implements Serializable {
+public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
 
     private HashMap<String, NodoGrafo> nodos;
     private HashMap<Integer, Arista> aristas;
+    private NodoGrafo<T> inicial;
+    private int size;
 
     public GrafoNoDirigido(HashMap<String, NodoGrafo> nodos, HashMap<Integer, Arista> aristas) {
         this.nodos = nodos;
         this.aristas = aristas;
+        this.size=0;
+    }
+
+    public void agregar(String nombre, T elemento) throws NombreRepetidoException {
+        if(!nodos.containsKey(nombre)) {
+            NodoGrafo<T> nodoN = new NodoGrafo<>(nombre,elemento);
+            nodos.put(nombre, nodoN);
+        }else {
+            throw new NombreRepetidoException("ya existe un nodo con ese nombre");
+        }
+        size++;
     }
 
     /**
