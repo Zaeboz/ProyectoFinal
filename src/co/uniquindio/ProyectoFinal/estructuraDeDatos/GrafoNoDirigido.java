@@ -37,6 +37,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         }
     }
 
+
     public int getSize() {
         return size;
     }
