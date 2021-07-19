@@ -1,6 +1,8 @@
 package co.uniquindio.ProyectoFinal.modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Mensaje  implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -11,6 +13,14 @@ public class Mensaje  implements Serializable {
     int contadorMensajes = 0;
 
     public Mensaje() {
+    }
+
+    public void generarFechaMensaje() {
+        Date date= new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hourFormat=new SimpleDateFormat("HH:mm:ss");
+        fecha= dateFormat.format(date);
+        hora= hourFormat.format(date);
     }
 
     public Vendedor getVendedorFinal() {

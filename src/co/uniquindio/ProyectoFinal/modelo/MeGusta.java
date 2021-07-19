@@ -1,6 +1,8 @@
 package co.uniquindio.ProyectoFinal.modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MeGusta implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -8,6 +10,12 @@ public class MeGusta implements Serializable {
     String fecha = "";
 
     public MeGusta() {
+    }
+
+    public void generarFechaMeGusta() {
+        Date date= new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+        fecha= dateFormat.format(date);
     }
 
     public Vendedor getVendedorLiked() {
