@@ -9,26 +9,38 @@ import java.util.Set;
 
 public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
 
-    private HashMap<String, NodoGrafo> nodos;
+    private HashMap<String, NodoGrafo> grafo;
     private HashMap<Integer, Arista> aristas;
     private NodoGrafo<T> inicial;
     private int size;
 
     public GrafoNoDirigido(HashMap<String, NodoGrafo> nodos, HashMap<Integer, Arista> aristas) {
-        this.nodos = nodos;
+        this.grafo = nodos;
         this.aristas = aristas;
         this.size=0;
     }
 
     public void agregar(String nombre, T elemento) throws NombreRepetidoException {
-        if(!nodos.containsKey(nombre)) {
+        if(!grafo.containsKey(nombre)) {
             NodoGrafo<T> nodoN = new NodoGrafo<>(nombre,elemento);
-            nodos.put(nombre, nodoN);
+            grafo.put(nombre, nodoN);
         }else {
             throw new NombreRepetidoException("ya existe un nodo con ese nombre");
         }
         size++;
     }
+
+    public void eliminar(String nombre) {//
+        if(grafo.containsKey(nombre)) {
+            grafo.remove(nombre);
+            size--;
+        }
+    }
+
+    public int getSize() {
+        return size;
+    }
+
 
     /**
      * Inserta una arista unitaria entre los vertices v1 y nodo2
@@ -81,7 +93,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public boolean contieneElVertice(NodoGrafo nodo)
     {
-        return (this.nodos.get(nodo.getValorNodo()) != null);
+        return (this.grafo.get(nodo.getValorNodo()) != null);
     }
 
     /**
@@ -90,7 +102,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public NodoGrafo getVertice(String valor)
     {
-        return this.nodos.get(valor);
+        return this.grafo.get(valor);
     }
 
     /**
@@ -101,13 +113,13 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public boolean insertarNodo(NodoGrafo nodo)
     {
-        NodoGrafo actual = this.nodos.get(nodo.getValorNodo());
+        NodoGrafo actual = this.grafo.get(nodo.getValorNodo());
         if(actual != null) //existía previamente?
         {
             return false;
         }
 
-        nodos.put((String) nodo.getValorNodo(), nodo);
+        grafo.put((String) nodo.getValorNodo(), nodo);
         return true;
     }
 
@@ -121,7 +133,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public NodoGrafo eliminarVertice(String valor)
     {
-        NodoGrafo nodoAux = nodos.remove(valor);
+        NodoGrafo nodoAux = grafo.remove(valor);
 
         while(nodoAux.getContarVecinos() >= 0)
             this.eliminarArista(nodoAux.getVecino(0));
@@ -135,7 +147,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public Set<String> nodosKeys()
     {
-        return this.nodos.keySet();
+        return this.grafo.keySet();
     }
 
     /**
