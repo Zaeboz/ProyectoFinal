@@ -2,6 +2,7 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
 import java.io.Serializable;
 
@@ -19,13 +20,61 @@ public class Proyecto implements Serializable {
      }
 
 
-     public int crearVendedores(String nombre){return 0;}
+     public boolean crearVendedores(String nombre) throws NombreRepetidoException {
 
-     public Vendedor buscarVendedor(String nombre){return null;}
+          Vendedor nuevoVendedor =  null;
+          Vendedor vendedorExistente = buscarVendedor(nombre);
+          boolean p =false;
 
-     public int comentarProducto(Producto producto){return -1;}
+          if(listaVendedores.getTamanio() >= MAX_VENDEDORES) {
+               throw new NombreRepetidoException("El numero de vendedores no puede ser mayor de 10");
+          }
 
-     public int darMeGusta(Producto producto){return -1;}
+          else{
+               if(vendedorExistente != null) {
+                    throw new NombreRepetidoException("El nombre del vendedor  "+nombre+" no se puede crear. Ya existe");
+
+               }
+               else
+               {
+                    nuevoVendedor = new Vendedor(nombre);
+
+                    getListaVendedores().agregarfinal(nuevoVendedor);
+
+                    p=true;
+
+               }
+          }
+
+          return p;
+     }
+
+     public Vendedor buscarVendedor(String nombre){
+
+          int i;
+          Vendedor vendedor;
+          for(i=0;i<listaVendedores.getTamanio();i++) {
+               vendedor=listaVendedores.obtenerValorNodo(i);
+               if(vendedor.getNombreVendedor().equals(nombre)) {
+                    return vendedor;
+               }
+          }
+
+          return null;
+
+     }
+
+     public int comentarProducto(Producto producto, Comentario comentario){
+
+          producto.getListaComentarios().agregarInicio(comentario);
+          return -1;
+     }
+
+     public int darMeGusta(Producto producto, MeGusta meGusta){
+
+          producto.getListaMeGusta().agregarInicio(meGusta);
+          return -1;
+     }
 
      public ListaSimple<Vendedor> getListaVendedores() {
           return listaVendedores;

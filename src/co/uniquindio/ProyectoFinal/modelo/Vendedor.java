@@ -20,6 +20,10 @@ public class Vendedor implements Serializable {
 
     }
 
+    public Vendedor(String nombreVendedor) {
+        this.nombreVendedor = nombreVendedor;
+    }
+
     public String getNombreVendedor() {
         return nombreVendedor;
     }
