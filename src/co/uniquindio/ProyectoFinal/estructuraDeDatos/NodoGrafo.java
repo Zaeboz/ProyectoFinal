@@ -115,4 +115,8 @@ public class NodoGrafo <T> implements Serializable {
     {
         return this.grupoNodos;
     }
+
+    public void setValorNodo(T valorNodo) {
+        this.valorNodo = valorNodo;
+    }
 }
