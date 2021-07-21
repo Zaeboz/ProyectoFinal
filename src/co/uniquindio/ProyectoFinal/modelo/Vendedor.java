@@ -5,7 +5,7 @@ import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 
 import java.io.Serializable;
 
-public class Vendedor implements Serializable {
+public class Vendedor implements Serializable, Comparable<Vendedor> {
     private static final long serialVersionUID = 1L;
     int MAX_VENDEDORES = 9;
     String nombreVendedor = new String();
