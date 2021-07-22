@@ -47,11 +47,11 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         }
     }
 
-    public T getDato(String nombre) throws NombreRepetidoException  {
+    public T getDato(int indice) throws NombreRepetidoException  {
         T dato;
         NodoGrafo<T> nodo;
-        if(grafo.containsKey(nombre)) {
-            nodo=grafo.get(nombre);
+        if(indiceValido(indice)) {
+            nodo=grafo.get(indice);
             dato=nodo.getValorNodo();
         }
         else {
@@ -60,7 +60,13 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         return dato;
     }
 
-
+    //Verificar si indice es valido
+    private boolean indiceValido(int indice) {
+        if (indice >= 0 && indice < size) {
+            return true;
+        }
+        throw new RuntimeException("�ndice no v�lido");
+    }
     public int getSize() {
         return size;
     }
