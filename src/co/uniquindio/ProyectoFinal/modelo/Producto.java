@@ -19,6 +19,11 @@ public class Producto implements Serializable, Comparable<Producto> {
     public Producto() {
     }
 
+    public Producto(String nombre, Categoria categoria) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }
+
     @Override
     public int compareTo(Producto o) {
         return 0;
@@ -31,6 +36,21 @@ public class Producto implements Serializable, Comparable<Producto> {
         fecha= dateFormat.format(date);
         hora= hourFormat.format(date);
     }
+
+    public void añadirComentario(Comentario comentario){
+        listaComentarios.agregarfinal(comentario);
+    }
+
+    public void añadirMeGusta(MeGusta meGusta){
+        listaMeGusta.agregarfinal(meGusta);
+    }
+
+    public int obtenerTotalMeGustas(){
+        return listaMeGusta.getTamanio();
+    }
+
+
+
 
     public String getNombre() {
         return nombre;

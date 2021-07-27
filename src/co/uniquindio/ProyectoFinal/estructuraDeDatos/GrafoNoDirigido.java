@@ -36,6 +36,14 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         }
     }
 
+    public NodoGrafo<T> buscar(T elemento){
+        NodoGrafo<T> nodoGrafo = null;
+        if(grafo.containsKey(elemento)){
+            nodoGrafo = grafo.get(elemento);
+        }
+        return nodoGrafo;
+    }
+
     public void setDato(String nombre, T elemento) throws NombreRepetidoException {
         NodoGrafo<T> nodo=null;
         if(grafo.containsKey(nombre)) {
@@ -47,11 +55,11 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         }
     }
 
-    public T getDato(String nombre) throws NombreRepetidoException  {
+    public T getDato(int indice) throws NombreRepetidoException  {
         T dato;
         NodoGrafo<T> nodo;
-        if(grafo.containsKey(nombre)) {
-            nodo=grafo.get(nombre);
+        if(indiceValido(indice)) {
+            nodo=grafo.get(indice);
             dato=nodo.getValorNodo();
         }
         else {
@@ -60,11 +68,18 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         return dato;
     }
 
+    //Verificar si indice es valido
+    private boolean indiceValido(int indice) {
+        if (indice >= 0 && indice < size) {
+            return true;
+        }
+        throw new RuntimeException("�ndice no v�lido");
+    }
+
 
     public int getSize() {
         return size;
     }
-
 
     /**
      * Inserta una arista unitaria entre los vertices v1 y nodo2

@@ -55,7 +55,9 @@ public class ArbolBinario<T extends Comparable<T>> {
 			inorden(n.getDerecho());
 		}
 	}
-	
+
+
+
 	/**
 	 * Realiza el recorrido preorden en el �rbol binario
 	 */
@@ -95,6 +97,7 @@ public class ArbolBinario<T extends Comparable<T>> {
 			System.out.println(n.getElemento());
 		}
 	}
+
 	
 	/**
 	 * Vetifica si un elemento existe en el �rbol binario

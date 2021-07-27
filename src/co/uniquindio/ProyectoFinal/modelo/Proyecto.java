@@ -12,7 +12,6 @@ public class Proyecto implements Serializable {
 
      final int MAX_VENDEDORES=10;
 
-     ListaSimple<Vendedor> listaVendedores = new ListaSimple<>();
      private GrafoNoDirigido<Vendedor> grafoVendedores;
 
 
@@ -42,12 +41,12 @@ public class Proyecto implements Serializable {
           return p;
      }
 
-     public Vendedor buscarVendedor(String nombre){
+     public Vendedor buscarVendedor(String nombre) throws NombreRepetidoException {
 
           int i;
           Vendedor vendedor;
-          for(i=0;i<listaVendedores.getTamanio();i++) {
-               vendedor=listaVendedores.obtenerValorNodo(i);
+          for(i=0;i<grafoVendedores.getSize();i++) {
+               vendedor=grafoVendedores.getDato(i);
                if(vendedor.getNombreVendedor().equals(nombre)) {
                     return vendedor;
                }
@@ -65,16 +64,8 @@ public class Proyecto implements Serializable {
 
      public int darMeGusta(Producto producto, MeGusta meGusta){
 
-          producto.getListaMeGusta().agregarInicio(meGusta);
+          producto.getListaMeGusta().agregarfinal(meGusta);
           return -1;
-     }
-
-     public ListaSimple<Vendedor> getListaVendedores() {
-          return listaVendedores;
-     }
-
-     public void setListaVendedores(ListaSimple<Vendedor> listaVendedores) {
-          this.listaVendedores = listaVendedores;
      }
 
 

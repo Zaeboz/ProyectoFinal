@@ -12,6 +12,12 @@ public class MeGusta implements Serializable {
     public MeGusta() {
     }
 
+    public MeGusta(Vendedor vendedorLiked, String fecha) {
+        this.vendedorLiked = vendedorLiked;
+        this.fecha = fecha;
+    }
+
+
     public void generarFechaMeGusta() {
         Date date= new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
