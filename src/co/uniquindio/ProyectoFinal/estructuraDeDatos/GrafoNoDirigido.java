@@ -76,7 +76,6 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         throw new RuntimeException("�ndice no v�lido");
     }
 
-
     public int getSize() {
         return size;
     }
