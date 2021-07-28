@@ -16,7 +16,7 @@ public class GrafoNoDirigido implements Serializable {
     }
 
     /**
-     * Inserta una arista unitaria entre los vertices v1 y nodo2
+     * Inserta una arista unitaria entre los nodos nodo1 y nodo2
      * si y solo si no exista ya una arista que los una
      *
      * @param nodo1 Un extremo de la arista
@@ -25,10 +25,18 @@ public class GrafoNoDirigido implements Serializable {
      **/
     public boolean insertarArista(NodoGrafo nodo1, NodoGrafo nodo2)
     {
+        if(nodo1.equals(nodo2)) //nodos identicos?
+            return false;
+
         Arista arista = new Arista(nodo1, nodo2);
+        if(aristas.containsKey(arista.hashCode())) //arista ya está en el grafo?
+            return false;
+        else if( nodo1.contieneUnVecino(arista) || nodo2.contieneUnVecino(arista)) //arista ya une a nodo1 o nodo2?
+            return false;
+
         aristas.put(arista.hashCode(), arista);
         nodo1.insertarVecino(arista);
-        nodo1.insertarVecino(arista);
+        nodo2.insertarVecino(arista);
         return true;
     }
 
@@ -48,7 +56,7 @@ public class GrafoNoDirigido implements Serializable {
      * pierden la adyacencia entre ellos
      *
      *@param arista Arista que se quiere eliminar del grafo
-     *@return Arista. Arista borrada del grafo
+     *@return Arista Arista borrada del grafo
      */
     public Arista eliminarArista(Arista arista)
     {
@@ -58,22 +66,22 @@ public class GrafoNoDirigido implements Serializable {
     }
 
     /**
-     * Nos devuelve true si encuentra el vértice que se pasa
+     * Nos devuelve true si encuentra el nodo que se pasa
      * como parámetro de entrada
      *
      * @param nodo Vértice que buscamos
-     * @return boolean True si el vertice se encuentra.
+     * @return boolean True si el nodo se encuentra.
      **/
-    public boolean contieneElVertice(NodoGrafo nodo)
+    public boolean contieneElNodo(NodoGrafo nodo)
     {
         return (this.nodos.get(nodo.getValorNodo()) != null);
     }
 
     /**
-     * @param valor Distintivo de cada vértice
-     * @return NodoGrafo Devuelve el vértice asociado a la etiqueta
+     * @param valor Distintivo de cada nodo
+     * @return NodoGrafo Devuelve el nodo asociado a la etiqueta
      **/
-    public NodoGrafo getVertice(String valor)
+    public NodoGrafo getNodo(String valor)
     {
         return this.nodos.get(valor);
     }
@@ -81,8 +89,8 @@ public class GrafoNoDirigido implements Serializable {
     /**
      * Inserta un nuevo nodo
      *
-     * @param nodo Vértice a insertar
-     * @return boolean Verdarero si el vértice se inserta con éxito
+     * @param nodo Nodo a insertar
+     * @return boolean True si el nodo se inserta con éxito
      **/
     public boolean insertarNodo(NodoGrafo nodo)
     {
@@ -97,14 +105,14 @@ public class GrafoNoDirigido implements Serializable {
     }
 
     /**
-     * Elimina el vértice especificado mediante la valor
-     * distintiva por parámetro de entrada. Al eliminar el vértice
-     * se elimina también todas las adyancencias que poseía este.
+     * Elimina el nodo especificado mediante la valor
+     * distintiva por parámetro de entrada. Al eliminar el nodo
+     * se elimina también todas las adyacencias que poseía este.
      *
-     * @param valor Cadena distintiva de cada vértice
-     * @return Vertice. Devuelve el vértice eliminado
+     * @param valor Cadena distintiva de cada nodo
+     * @return NodoGrafo Devuelve el nodo eliminado
      **/
-    public NodoGrafo eliminarVertice(String valor)
+    public NodoGrafo eliminarNodo(String valor)
     {
         NodoGrafo nodoAux = nodos.remove(valor);
 
