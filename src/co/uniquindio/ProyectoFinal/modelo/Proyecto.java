@@ -2,7 +2,7 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
-import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
+import co.uniquindio.ProyectoFinal.excepciones.*;
 
 import java.io.Serializable;
 
@@ -68,6 +68,19 @@ public class Proyecto implements Serializable {
           return -1;
      }
 
+     public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
+
+          ListaSimple<Vendedor>vendedores= new ListaSimple<>();
+          try {
+               for(int i=0;i<grafoVendedores.getSizeNodo(nombreOrigen);i++) {
+                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombreOrigen, i).getValorNodo());
+               }
+               return vendedores;
+          } catch (ErrorExisteNodo e) {
+               e.printStackTrace();
+               return null;
+          }
+     }
 
      public int getMAX_VENDEDORES() {
           return MAX_VENDEDORES;
