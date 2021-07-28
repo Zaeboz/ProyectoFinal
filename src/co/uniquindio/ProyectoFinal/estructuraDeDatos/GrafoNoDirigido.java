@@ -68,6 +68,19 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         return dato;
     }
 
+    public T getDatoN(String nombre) throws ErrorExisteNodo {
+        T dato;
+        NodoGrafo<T> nodo;
+        if(grafo.containsKey(nombre)) {
+            nodo=grafo.get(nombre);
+            dato=nodo.getValorNodo();
+        }
+        else {
+            throw new ErrorExisteNodo("Nodo origen no existe");
+        }
+        return dato;
+    }
+
     //Verificar si indice es valido
     private boolean indiceValido(int indice) {
         if (indice >= 0 && indice < size) {

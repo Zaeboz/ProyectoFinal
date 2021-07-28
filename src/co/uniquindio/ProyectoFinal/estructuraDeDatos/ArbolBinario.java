@@ -98,7 +98,37 @@ public class ArbolBinario<T extends Comparable<T>> {
 		}
 	}
 
-	
+	public T busquedaInorden(T dato) {
+		return busInorden(raiz,dato);
+	}
+
+	/**
+	 * Realiza el recorrido inorden en el árbol binario
+	 * @param n Nodo raíz
+	 */
+	private T busInorden(NodoArbolBinario<T> n,T dato) {
+		if(n!=null) {
+			if(n.getElemento().equals(dato)) {
+				return n.getElemento();
+			}
+			T var;
+			var=busInorden(n.getIzquierdo(),dato);
+			if(var!=null) {
+				return var;
+			}else {
+				var=busInorden(n.getDerecho(),dato);
+				if(var!=null) {
+					return var;
+				}else {
+					return null;
+				}
+			}
+		}else {
+			return null;
+		}
+	}
+
+
 	/**
 	 * Vetifica si un elemento existe en el �rbol binario
 	 * @param n NodoArbolBinario ra�z

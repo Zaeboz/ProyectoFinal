@@ -2,6 +2,7 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+import co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo;
 import co.uniquindio.ProyectoFinal.excepciones.*;
 
 import java.io.Serializable;
@@ -56,18 +57,6 @@ public class Proyecto implements Serializable {
 
      }
 
-     public int comentarProducto(Producto producto, Comentario comentario){
-
-          producto.getListaComentarios().agregarInicio(comentario);
-          return -1;
-     }
-
-     public int darMeGusta(Producto producto, MeGusta meGusta){
-
-          producto.getListaMeGusta().agregarfinal(meGusta);
-          return -1;
-     }
-
      public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
 
           ListaSimple<Vendedor>vendedores= new ListaSimple<>();
@@ -81,6 +70,7 @@ public class Proyecto implements Serializable {
                return null;
           }
      }
+
 
      public int getMAX_VENDEDORES() {
           return MAX_VENDEDORES;
