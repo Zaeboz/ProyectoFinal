@@ -1,6 +1,8 @@
 package co.uniquindio.ProyectoFinal.modelo;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Comentario implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -8,6 +10,18 @@ public class Comentario implements Serializable {
     String fecha = "";
 
     public Comentario() {
+    }
+
+    public Comentario(Vendedor vendedorComentario, String fecha) {
+        this.vendedorComentario = vendedorComentario;
+        this.fecha = fecha;
+    }
+
+
+    public void generarFechaComentario() {
+        Date date= new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+        fecha= dateFormat.format(date);
     }
 
     public String getFecha() {

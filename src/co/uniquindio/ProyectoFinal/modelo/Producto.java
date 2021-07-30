@@ -2,6 +2,9 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import java.io.Serializable;
 
 public class Producto implements Serializable, Comparable<Producto> {
@@ -16,10 +19,38 @@ public class Producto implements Serializable, Comparable<Producto> {
     public Producto() {
     }
 
+    public Producto(String nombre, Categoria categoria) {
+        this.nombre = nombre;
+        this.categoria = categoria;
+    }
+
     @Override
     public int compareTo(Producto o) {
         return 0;
     }
+
+    public void generarFechaPublicacion() {
+        Date date= new Date();
+        SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hourFormat=new SimpleDateFormat("HH:mm:ss");
+        fecha= dateFormat.format(date);
+        hora= hourFormat.format(date);
+    }
+
+    public void añadirComentario(Comentario comentario){
+        listaComentarios.agregarfinal(comentario);
+    }
+
+    public void añadirMeGusta(MeGusta meGusta){
+        listaMeGusta.agregarfinal(meGusta);
+    }
+
+    public int obtenerTotalMeGustas(){
+        return listaMeGusta.getTamanio();
+    }
+
+
+
 
     public String getNombre() {
         return nombre;

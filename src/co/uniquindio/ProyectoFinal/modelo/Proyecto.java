@@ -2,6 +2,7 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
 import java.io.Serializable;
 
@@ -11,39 +12,73 @@ public class Proyecto implements Serializable {
 
      final int MAX_VENDEDORES=10;
 
-     ListaSimple<Vendedor> listaVendedores = new ListaSimple<>();
+     private GrafoNoDirigido<Vendedor> grafoVendedores;
 
-     GrafoNoDirigido grafoVendedores;
 
      public Proyecto() {
      }
 
-     public int crearVendedores(String nombre){return 0;}
+     public boolean crearVendedores(String nombre) throws NombreRepetidoException {
 
-     public Vendedor buscarVendedor(String nombre){return null;}
+          Vendedor nuevoVendedor =  null;
+          Vendedor vendedorExistente = buscarVendedor(nombre);
+          boolean p =false;
 
-     public int comentarProducto(Producto producto){return -1;}
-
-     public int darMeGusta(Producto producto){return -1;}
-
-     public ListaSimple<Vendedor> getListaVendedores() {
-          return listaVendedores;
+          if(grafoVendedores.getSize() >= MAX_VENDEDORES) {
+               throw new NombreRepetidoException("El numero de vendedores no puede ser mayor de 10");
+          }
+          else{
+               if(vendedorExistente != null) {
+                    throw new NombreRepetidoException("El nombre del vendedor  "+nombre+" no se puede crear. Ya existe");
+               }
+               else
+               {
+                    nuevoVendedor = new Vendedor(nombre);
+                    getGrafoVendedores().agregar(nombre, nuevoVendedor);
+                    p=true;
+               }
+          }
+          return p;
      }
 
-     public void setListaVendedores(ListaSimple<Vendedor> listaVendedores) {
-          this.listaVendedores = listaVendedores;
+     public Vendedor buscarVendedor(String nombre) throws NombreRepetidoException {
+
+          int i;
+          Vendedor vendedor;
+          for(i=0;i<grafoVendedores.getSize();i++) {
+               vendedor=grafoVendedores.getDato(i);
+               if(vendedor.getNombreVendedor().equals(nombre)) {
+                    return vendedor;
+               }
+          }
+
+          return null;
+
      }
 
-     public GrafoNoDirigido getGrafoVendedores() {
-          return grafoVendedores;
+     public int comentarProducto(Producto producto, Comentario comentario){
+
+          producto.getListaComentarios().agregarInicio(comentario);
+          return -1;
      }
 
-     public void setGrafoVendedores(GrafoNoDirigido grafoVendedores) {
-          this.grafoVendedores = grafoVendedores;
+     public int darMeGusta(Producto producto, MeGusta meGusta){
+
+          producto.getListaMeGusta().agregarfinal(meGusta);
+          return -1;
      }
+
 
      public int getMAX_VENDEDORES() {
           return MAX_VENDEDORES;
+     }
+
+     public GrafoNoDirigido<Vendedor> getGrafoVendedores() {
+          return grafoVendedores;
+     }
+
+     public void setGrafoVendedores(GrafoNoDirigido<Vendedor> grafoVendedores) {
+          this.grafoVendedores = grafoVendedores;
      }
 }
 
