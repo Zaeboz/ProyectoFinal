@@ -33,17 +33,18 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
     }
 
     public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
+
         Producto nuevoProducto =  null;
-        Producto productoExistente = buscarProducto(nombre);
+        Categoria categoria = new Categoria(nombreCategoria);
+        nuevoProducto = new Producto(nombre,categoria);
+
         boolean p =false;
 
-        if(productoExistente != null) {
+        if(buscarProductos(nuevoProducto)!=null) {
             throw new NombreRepetidoException("El nombre del producto  "+nombre+" no se puede crear. Ya existe");
         }
         else
         {
-            Categoria categoria = new Categoria(nombreCategoria);
-            nuevoProducto = new Producto(nombre,categoria);
             getArbolProductos().agregar(nuevoProducto);
             p=true;
 
@@ -52,18 +53,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return p;
     }
 
-    public Producto buscarProducto(String nombre) throws NombreRepetidoException {
-
-        Producto producto = null;
-        for(int i=0;i<arbolProductos.getPeso();i++) {
-            producto=arbolProductos.busquedaInorden(producto);
-            if(arbolProductos.equals(nombre))  {
-               return producto;
-            }
-        }
-
-        return null;
-    }
 
     public void agregarContactos (Vendedor vendedor){
 
