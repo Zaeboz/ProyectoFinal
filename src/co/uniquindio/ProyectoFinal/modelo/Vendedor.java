@@ -20,6 +20,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+<<<<<<< HEAD
 
     public void agregarContactos (Vendedor vendedor){
 
@@ -60,6 +61,12 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
             this.nombreVendedor = nombreVendedor;
             this.arbolProductos = arbolProductos;
         }
+=======
+    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
+        this.nombreVendedor = nombreVendedor;
+        this.arbolProductos = arbolProductos;
+    }
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
 
 
     public void recibirMensaje(Mensaje mensaje)
@@ -81,7 +88,10 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public Producto buscarProductos(Producto producto) {
         return arbolProductos.busquedaInorden(producto);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
     }
 
 
@@ -148,6 +158,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return MAX_VENDEDORES;
     }
 
+<<<<<<< HEAD
     public ListaSimple<Comentario> getComentariosHechos() {
         return comentariosHechos;
     }
@@ -156,6 +167,8 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return listaMensajes;
     }
 
+=======
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
     @Override
     public int compareTo(Vendedor o) {
         return 0;

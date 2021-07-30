@@ -2,8 +2,13 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+<<<<<<< HEAD
 import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
+=======
+import co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo;
+import co.uniquindio.ProyectoFinal.excepciones.*;
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
 
 import java.io.Serializable;
 
@@ -12,11 +17,16 @@ public class Proyecto implements Serializable {
      private static final long serialVersionUID = 1L;
 
      final int MAX_VENDEDORES=10;
+<<<<<<< HEAD
      Vendedor vendedor;
      ListaSimple<Vendedor> listaVendedores = new ListaSimple<>();
      private GrafoNoDirigido<Vendedor> grafoVendedores ;
 
 
+=======
+
+     private GrafoNoDirigido<Vendedor> grafoVendedores;
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
 
 
      public Proyecto() {
@@ -72,6 +82,7 @@ public class Proyecto implements Serializable {
                e.printStackTrace();
                return null;
           }
+<<<<<<< HEAD
      }
 
 
@@ -103,6 +114,8 @@ public class Proyecto implements Serializable {
 
      public void setListaVendedores(ListaSimple<Vendedor> listaVendedores) {
           this.listaVendedores = listaVendedores;
+=======
+>>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
      }
 
 
