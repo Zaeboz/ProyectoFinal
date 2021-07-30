@@ -31,6 +31,13 @@ public class Proyecto implements Serializable {
      public Proyecto() {
      }
 
+     /**
+      * Metodo para crear un nuevo vendedor, el limite de vendedores que
+      * pueden ser creados es de 10
+      * @param nombre nombre del vendedor a crear
+      * @return
+      * @throws NombreRepetidoException
+      */
      public boolean crearVendedores(String nombre) throws NombreRepetidoException {
 
           Vendedor nuevoVendedor =  null;
@@ -55,7 +62,11 @@ public class Proyecto implements Serializable {
      }
 
 
-
+     /**
+      * Metodo para buscar un vendedor en la lista de vendedores creados
+      * @param nombreV nombre del vendedor a buscar
+      * @return
+      */
      public Vendedor buscarVendedor(String nombreV) {
           try {
                return grafoVendedores.getDatoN(nombreV);
@@ -78,7 +89,6 @@ public class Proyecto implements Serializable {
                e.printStackTrace();
                return null;
           }
-
      }
 
      public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {

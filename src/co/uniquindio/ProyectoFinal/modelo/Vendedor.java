@@ -24,6 +24,11 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
+        this.nombreVendedor = nombreVendedor;
+        this.arbolProductos = arbolProductos;
+    }
+
     public void agregarMensajes( Vendedor vendedorFinal, String mensaj){
 
         Date date= mensaje.generarFechaMensaje();
@@ -61,7 +66,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public void agregarComentariosHechos (){
 
-
         Comentario comentario = new Comentario();
         getComentariosHechos().agregarfinal(comentario);
     }
@@ -81,16 +85,11 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
-    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
-            this.nombreVendedor = nombreVendedor;
-            this.arbolProductos = arbolProductos;
-        }
 
 
-
-    public void publicarProducto(Producto producto){
-        arbolProductos.agregar(producto);
-    }
+    //public void publicarProducto(Producto producto){
+    //    arbolProductos.agregar(producto);
+    //}
 
     public void comentarProductos(Comentario comentario){
         comentariosHechos.agregarfinal(comentario);
