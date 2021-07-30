@@ -56,19 +56,15 @@ public class Proyecto implements Serializable {
 
 
 
-     public Vendedor buscarVendedor(String nombre) throws NombreRepetidoException {
-
-          Vendedor vendedor;
-          for(int i=0;i<grafoVendedores.getSize();i++) {
-               vendedor=grafoVendedores.getDato(i);
-               if(vendedor.getNombreVendedor().equals(nombre)) {
-                    return vendedor;
-               }
+     public Vendedor buscarVendedor(String nombreV) {
+          try {
+               return grafoVendedores.getDatoN(nombreV);
+          } catch (ErrorExisteNodo e) {
+               e.printStackTrace();
+               return null;
           }
-
-          return null;
-
      }
+
 
      public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
 
