@@ -12,6 +12,12 @@ public class Comentario implements Serializable {
     public Comentario() {
     }
 
+    public Comentario(Vendedor vendedorComentario, String comentario) {
+        this.vendedorComentario = vendedorComentario;
+        this.fecha = fecha;
+    }
+
+
     public void generarFechaComentario() {
         Date date= new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");

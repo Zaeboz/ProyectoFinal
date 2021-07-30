@@ -20,6 +20,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+
     public void agregarContactos (Vendedor vendedor){
 
         getContactos().agregarfinal(vendedor);
@@ -32,10 +33,12 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         getComentariosHechos().agregarfinal(comentario);
     }
 
+
+
     public void agregarMeGustaRealizados (){
 
         MeGusta meGusta= new MeGusta();
-        getMeGustasRealizados().agregarInicio(meGusta);
+        
     }
 
     public void agregarListaMensajes (){
@@ -44,9 +47,41 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         getListaMensajes().agregarfinal(mensaje);
     }
 
-    public void agregarSugerenciasContactos(Vendedor vendedor){
+
+
+
+    public void agregarSugerenciasContactos(Vendedor vendedor) {
 
         getSugerenciasContactos().agregarfinal(vendedor);
+
+    }
+
+    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
+            this.nombreVendedor = nombreVendedor;
+            this.arbolProductos = arbolProductos;
+        }
+
+
+    public void recibirMensaje(Mensaje mensaje)
+    {
+        listaMensajes.agregarfinal(mensaje);
+    }
+
+    public void publicarProducto(Producto producto){
+        arbolProductos.agregar(producto);
+    }
+
+    public void comentarProductos(Comentario comentario){
+        comentariosHechos.agregarfinal(comentario);
+    }
+
+    public void darMeGusta(MeGusta meGusta){
+        meGustasRealizados.agregarfinal(meGusta);
+    }
+
+    public Producto buscarProductos(Producto producto) {
+        return arbolProductos.busquedaInorden(producto);
+
     }
 
 
@@ -79,9 +114,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         this.contactos = contactos;
     }
 
-    public ListaSimple<Comentario> getComentariosHechos() {
-        return comentariosHechos;
-    }
+   
 
     public void setComentariosHechos(ListaSimple<Comentario> comentariosHechos) {
         this.comentariosHechos = comentariosHechos;
@@ -95,9 +128,9 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         this.meGustasRealizados = meGustasRealizados;
     }
 
-    public ListaSimple<Mensaje> getListaMensajes() {
-        return listaMensajes;
-    }
+
+
+
 
     public void setListaMensajes(ListaSimple<Mensaje> listaMensajes) {
         this.listaMensajes = listaMensajes;
@@ -113,6 +146,14 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public int getMAX_VENDEDORES() {
         return MAX_VENDEDORES;
+    }
+
+    public ListaSimple<Comentario> getComentariosHechos() {
+        return comentariosHechos;
+    }
+
+    private ListaSimple<Mensaje> getListaMensajes() {
+        return listaMensajes;
     }
 
     @Override

@@ -2,8 +2,8 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
-
 
 import java.io.Serializable;
 
@@ -60,21 +60,41 @@ public class Proyecto implements Serializable {
 
      }
 
-     public int comentarProducto(Producto producto, Comentario comentario){
+     public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
 
-          producto.getListaComentarios().agregarInicio(comentario);
-          return -1;
+          ListaSimple<Vendedor>vendedores= new ListaSimple<>();
+          try {
+               for(int i=0;i<grafoVendedores.getSizeNodo(nombreOrigen);i++) {
+                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombreOrigen, i).getValorNodo());
+               }
+               return vendedores;
+          } catch (ErrorExisteNodo e) {
+               e.printStackTrace();
+               return null;
+          }
      }
 
-     public int darMeGusta(Producto producto, MeGusta meGusta){
 
-          producto.getListaMeGusta().agregarInicio(meGusta);
-          return -1;
-     }
 
-     public void agregarContactos (Vendedor vendedores){
+     public void agregarAmigos (String nombre) throws NombreRepetidoException {
 
-          vendedor.agregarContactos(vendedores);
+          Vendedor vendedorExistente = buscarVendedor(nombre);
+          ListaSimple<Vendedor>sugerenciasVendedores= new ListaSimple<>();
+          sugerenciasVendedores= sugerirVendedor(nombre);
+          Vendedor vendedores;
+          if (vendedorExistente!=null ){
+               throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
+          }else{
+               for (int i = 0; i < sugerenciasVendedores.getTamanio(); i++) {
+                    vendedores=sugerenciasVendedores.obtenerValorNodo(i);
+                         if(vendedores.getNombreVendedor().equals(nombre)) {
+                              vendedor.agregarContactos(vendedores);
+                         }
+               }
+          }
+
+
+
      }
 
      public ListaSimple<Vendedor> getListaVendedores() {

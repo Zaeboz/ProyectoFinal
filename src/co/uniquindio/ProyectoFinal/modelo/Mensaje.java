@@ -15,6 +15,12 @@ public class Mensaje  implements Serializable {
     public Mensaje() {
     }
 
+    public Mensaje(Vendedor vendedorFinal, String mensaje) {
+        this.vendedorFinal = vendedorFinal;
+        this.mensaje = mensaje;
+    }
+
+
     public void generarFechaMensaje() {
         Date date= new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
