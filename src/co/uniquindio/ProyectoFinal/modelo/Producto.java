@@ -43,6 +43,12 @@ public class Producto implements Serializable, Comparable<Producto> {
     }
 
 
+    /**
+     * Método para guardar los me gustas realizados
+     * si el nombre del que realizó el me gusta ya esta registrado en la lista, lo borra.
+     * @param meGusta infomación del me gusta recibido
+     * @return true si guardó la información, false si la información ya estaba y la borro
+     */
     public boolean recibirMeGusta(MeGusta meGusta)
     {
         boolean centinela = true;
@@ -62,10 +68,18 @@ public class Producto implements Serializable, Comparable<Producto> {
         return centinela;
     }
 
+    /**
+     * Metodo para obtener la cantidad de me gustas en una publicacion
+     * @return
+     */
     public int obtenerTotalMeGustas() {
         return listaMeGusta.getTamanio();
     }
 
+    /**
+     * Metodo para obtener la cantidad de me comentarios en una publicacion
+     * @return
+     */
     public int obtenerTotalComentarios() {
         return listaComentarios.getTamanio();
     }
