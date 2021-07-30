@@ -119,4 +119,12 @@ public class NodoGrafo <T> implements Serializable {
     public void setValorNodo(T valorNodo) {
         this.valorNodo = valorNodo;
     }
+
+    public int getSize() {
+        return grupoNodos.getTamanio();
+    }
+
+    public NodoGrafo<T> seguirEnlace(int indice) {
+        return grupoNodos.obtener(indice).getNodo2();
+    }
 }

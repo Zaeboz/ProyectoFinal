@@ -68,6 +68,19 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
         return dato;
     }
 
+    public T getDatoN(String nombre) throws ErrorExisteNodo {
+        T dato;
+        NodoGrafo<T> nodo;
+        if(grafo.containsKey(nombre)) {
+            nodo=grafo.get(nombre);
+            dato=nodo.getValorNodo();
+        }
+        else {
+            throw new ErrorExisteNodo("Nodo origen no existe");
+        }
+        return dato;
+    }
+
     //Verificar si indice es valido
     private boolean indiceValido(int indice) {
         if (indice >= 0 && indice < size) {
@@ -78,6 +91,32 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
 
     public int getSize() {
         return size;
+    }
+
+    public int getSizeNodo(String nombre) throws ErrorExisteNodo {
+        int dato;
+        NodoGrafo<T> nodo;
+        if(grafo.containsKey(nombre)) {
+            nodo=grafo.get(nombre);
+            dato=nodo.getSize();
+        }
+        else {
+            throw new ErrorExisteNodo("Nodo origen no existe");
+        }
+        return dato;
+    }
+
+    public NodoGrafo<T> seguirEnlace (String nombre, int indice) throws ErrorExisteNodo {
+        NodoGrafo<T> nodoOrigen=null;
+        NodoGrafo<T> nodoEnlace=null;
+        if(grafo.containsKey(nombre)) {
+            nodoOrigen=grafo.get(nombre);
+            nodoEnlace=nodoOrigen.seguirEnlace(indice);
+        }
+        else {
+            throw new ErrorExisteNodo("Nodo origen no existe");
+        }
+        return nodoEnlace;
     }
 
     /**

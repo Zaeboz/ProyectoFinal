@@ -30,25 +30,45 @@ public class Producto implements Serializable, Comparable<Producto> {
     }
 
     public void generarFechaPublicacion() {
-        Date date= new Date();
-        SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat hourFormat=new SimpleDateFormat("HH:mm:ss");
-        fecha= dateFormat.format(date);
-        hora= hourFormat.format(date);
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
+        fecha = dateFormat.format(date);
+        hora = hourFormat.format(date);
     }
 
-    public void añadirComentario(Comentario comentario){
+    public void recibirComentario(Comentario comentario)
+    {
         listaComentarios.agregarfinal(comentario);
     }
 
-    public void añadirMeGusta(MeGusta meGusta){
-        listaMeGusta.agregarfinal(meGusta);
+
+    public boolean recibirMeGusta(MeGusta meGusta)
+    {
+        boolean centinela = true;
+        for(int i=0; i<listaMeGusta.getTamanio() && centinela; i++)
+        {
+
+            if(listaMeGusta.obtenerValorNodo(i).getNombre().equals(meGusta.getNombre()))
+            {
+                listaMeGusta.eliminar(meGusta);
+                centinela = false;
+            }
+        }
+        if(centinela)
+        {
+            listaMeGusta.agregarfinal(meGusta);
+        }
+        return centinela;
     }
 
-    public int obtenerTotalMeGustas(){
+    public int obtenerTotalMeGustas() {
         return listaMeGusta.getTamanio();
     }
 
+    public int obtenerTotalComentarios() {
+        return listaComentarios.getTamanio();
+    }
 
 
 
@@ -84,6 +104,7 @@ public class Producto implements Serializable, Comparable<Producto> {
         this.categoria = categoria;
     }
 
+
     public ListaSimple<Comentario> getListaComentarios() {
         return listaComentarios;
     }
@@ -100,3 +121,4 @@ public class Producto implements Serializable, Comparable<Producto> {
         this.listaMeGusta = listaMeGusta;
     }
 }
+

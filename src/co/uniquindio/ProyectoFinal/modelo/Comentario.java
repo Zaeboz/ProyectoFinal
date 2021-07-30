@@ -12,7 +12,7 @@ public class Comentario implements Serializable {
     public Comentario() {
     }
 
-    public Comentario(Vendedor vendedorComentario, String fecha) {
+    public Comentario(Vendedor vendedorComentario, String comentario) {
         this.vendedorComentario = vendedorComentario;
         this.fecha = fecha;
     }

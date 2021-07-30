@@ -43,6 +43,10 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         meGustasRealizados.agregarfinal(meGusta);
     }
 
+    public Producto buscarProductos(Producto producto) {
+        return arbolProductos.busquedaInorden(producto);
+    }
+
 
     public Vendedor(String nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
