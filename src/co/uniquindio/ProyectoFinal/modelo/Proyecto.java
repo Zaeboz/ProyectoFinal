@@ -2,31 +2,30 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
-<<<<<<< HEAD
+
 import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
-=======
+
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo;
 import co.uniquindio.ProyectoFinal.excepciones.*;
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
+
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Proyecto implements Serializable {
 
      private static final long serialVersionUID = 1L;
 
      final int MAX_VENDEDORES=10;
-<<<<<<< HEAD
+
      Vendedor vendedor;
+
      ListaSimple<Vendedor> listaVendedores = new ListaSimple<>();
+
      private GrafoNoDirigido<Vendedor> grafoVendedores ;
 
-
-=======
-
-     private GrafoNoDirigido<Vendedor> grafoVendedores;
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
 
 
      public Proyecto() {
@@ -55,11 +54,12 @@ public class Proyecto implements Serializable {
           return p;
      }
 
+
+
      public Vendedor buscarVendedor(String nombre) throws NombreRepetidoException {
 
-          int i;
           Vendedor vendedor;
-          for(i=0;i<grafoVendedores.getSize();i++) {
+          for(int i=0;i<grafoVendedores.getSize();i++) {
                vendedor=grafoVendedores.getDato(i);
                if(vendedor.getNombreVendedor().equals(nombre)) {
                     return vendedor;
@@ -82,31 +82,44 @@ public class Proyecto implements Serializable {
                e.printStackTrace();
                return null;
           }
-<<<<<<< HEAD
+
      }
 
+     public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {
+          ListaSimple<Vendedor>sugerenciasVendedores;
+          sugerenciasVendedores= sugerirVendedor(nombre);
+          Vendedor vendedores;
+          for(int i=0;i<sugerenciasVendedores.getTamanio();i++) {
+               vendedores=sugerenciasVendedores.obtenerValorNodo(i);
+               if(vendedores.getNombreVendedor().equals(nombre))  {
+                    return vendedor;
+               }
+          }
 
+          return null;
+
+     }
 
      public void agregarAmigos (String nombre) throws NombreRepetidoException {
 
-          Vendedor vendedorExistente = buscarVendedor(nombre);
-          ListaSimple<Vendedor>sugerenciasVendedores= new ListaSimple<>();
+          Vendedor vendedorExistente = buscarAmigo(nombre);
+          ListaSimple<Vendedor>sugerenciasVendedores;
           sugerenciasVendedores= sugerirVendedor(nombre);
           Vendedor vendedores;
           if (vendedorExistente!=null ){
                throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
-          }else{
+          }else {
                for (int i = 0; i < sugerenciasVendedores.getTamanio(); i++) {
-                    vendedores=sugerenciasVendedores.obtenerValorNodo(i);
-                         if(vendedores.getNombreVendedor().equals(nombre)) {
-                              vendedor.agregarContactos(vendedores);
-                         }
+                    vendedores = sugerenciasVendedores.obtenerValorNodo(i);
+                    if (vendedores.getNombreVendedor().equals(nombre)) {
+                         vendedor.agregarContactos(vendedores);
+                    }
                }
           }
 
-
-
      }
+
+
 
      public ListaSimple<Vendedor> getListaVendedores() {
           return listaVendedores;
@@ -114,8 +127,7 @@ public class Proyecto implements Serializable {
 
      public void setListaVendedores(ListaSimple<Vendedor> listaVendedores) {
           this.listaVendedores = listaVendedores;
-=======
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
+
      }
 
 

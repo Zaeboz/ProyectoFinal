@@ -21,12 +21,13 @@ public class Mensaje  implements Serializable {
     }
 
 
-    public void generarFechaMensaje() {
+    public Date generarFechaMensaje() {
         Date date= new Date();
         SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat hourFormat=new SimpleDateFormat("HH:mm:ss");
         fecha= dateFormat.format(date);
         hora= hourFormat.format(date);
+        return date;
     }
 
     public Vendedor getVendedorFinal() {

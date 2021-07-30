@@ -2,17 +2,21 @@ package co.uniquindio.ProyectoFinal.modelo;
 
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ArbolBinario;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
+import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
 
 public class Vendedor implements Serializable, Comparable<Vendedor> {
     private static final long serialVersionUID = 1L;
     int MAX_VENDEDORES = 9;
+    Mensaje mensaje;
     String nombreVendedor = new String();
     ListaSimple<Vendedor> contactos = new ListaSimple<>();
     ListaSimple<Comentario> comentariosHechos = new ListaSimple<>();
     ListaSimple<MeGusta> meGustasRealizados = new ListaSimple<>();
-    ListaSimple<Mensaje> listaMensajes = new ListaSimple<>();
+    HashMap listaMensajes = new HashMap();
     ListaSimple<Vendedor> sugerenciasContactos = new ListaSimple<>();
     ArbolBinario<Producto> arbolProductos = new ArbolBinario<>();
 
@@ -20,7 +24,46 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
-<<<<<<< HEAD
+    public void agregarMensajes( Vendedor vendedorFinal, String mensaj){
+
+        Date date= mensaje.generarFechaMensaje();
+        Mensaje mensajes = new Mensaje(vendedorFinal,mensaj);
+        vendedorFinal.getListaMensajes().put(date,mensajes);
+        getListaMensajes().put(date,mensajes);
+    }
+
+    public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
+        Producto nuevoProducto =  null;
+        Producto productoExistente = buscarProducto(nombre);
+        boolean p =false;
+
+        if(productoExistente != null) {
+            throw new NombreRepetidoException("El nombre del producto  "+nombre+" no se puede crear. Ya existe");
+        }
+        else
+        {
+            Categoria categoria = new Categoria(nombreCategoria);
+            nuevoProducto = new Producto(nombre,categoria);
+            getArbolProductos().agregar(nuevoProducto);
+            p=true;
+
+        }
+
+        return p;
+    }
+
+    public Producto buscarProducto(String nombre) throws NombreRepetidoException {
+
+        Producto producto = null;
+        for(int i=0;i<arbolProductos.getPeso();i++) {
+            producto=arbolProductos.busquedaInorden(producto);
+            if(arbolProductos.equals(nombre))  {
+               return producto;
+            }
+        }
+
+        return null;
+    }
 
     public void agregarContactos (Vendedor vendedor){
 
@@ -42,14 +85,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         
     }
 
-    public void agregarListaMensajes (){
-
-        Mensaje mensaje = new Mensaje();
-        getListaMensajes().agregarfinal(mensaje);
-    }
-
-
-
 
     public void agregarSugerenciasContactos(Vendedor vendedor) {
 
@@ -61,18 +96,8 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
             this.nombreVendedor = nombreVendedor;
             this.arbolProductos = arbolProductos;
         }
-=======
-    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
-        this.nombreVendedor = nombreVendedor;
-        this.arbolProductos = arbolProductos;
-    }
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
 
 
-    public void recibirMensaje(Mensaje mensaje)
-    {
-        listaMensajes.agregarfinal(mensaje);
-    }
 
     public void publicarProducto(Producto producto){
         arbolProductos.agregar(producto);
@@ -88,10 +113,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public Producto buscarProductos(Producto producto) {
         return arbolProductos.busquedaInorden(producto);
-<<<<<<< HEAD
 
-=======
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
     }
 
 
@@ -142,10 +164,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
 
 
-    public void setListaMensajes(ListaSimple<Mensaje> listaMensajes) {
-        this.listaMensajes = listaMensajes;
-    }
-
     public ListaSimple<Vendedor> getSugerenciasContactos() {
         return sugerenciasContactos;
     }
@@ -158,17 +176,19 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return MAX_VENDEDORES;
     }
 
-<<<<<<< HEAD
+
     public ListaSimple<Comentario> getComentariosHechos() {
         return comentariosHechos;
     }
 
-    private ListaSimple<Mensaje> getListaMensajes() {
+    public HashMap getListaMensajes() {
         return listaMensajes;
     }
 
-=======
->>>>>>> 1ec7a59d38ac81e2fe129b15fe2614633be8ab9b
+    public void setListaMensajes(HashMap listaMensajes) {
+        this.listaMensajes = listaMensajes;
+    }
+
     @Override
     public int compareTo(Vendedor o) {
         return 0;
