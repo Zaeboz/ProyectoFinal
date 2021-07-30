@@ -20,6 +20,36 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+    public void agregarContactos (Vendedor vendedor){
+
+        getContactos().agregarfinal(vendedor);
+    }
+
+    public void agregarComentariosHechos (){
+
+
+        Comentario comentario = new Comentario();
+        getComentariosHechos().agregarfinal(comentario);
+    }
+
+    public void agregarMeGustaRealizados (){
+
+        MeGusta meGusta= new MeGusta();
+        getMeGustasRealizados().agregarInicio(meGusta);
+    }
+
+    public void agregarListaMensajes (){
+
+        Mensaje mensaje = new Mensaje();
+        getListaMensajes().agregarfinal(mensaje);
+    }
+
+    public void agregarSugerenciasContactos(Vendedor vendedor){
+
+        getSugerenciasContactos().agregarfinal(vendedor);
+    }
+
+
     public Vendedor(String nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
     }
@@ -83,5 +113,10 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public int getMAX_VENDEDORES() {
         return MAX_VENDEDORES;
+    }
+
+    @Override
+    public int compareTo(Vendedor o) {
+        return 0;
     }
 }

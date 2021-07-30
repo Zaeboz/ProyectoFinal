@@ -4,6 +4,7 @@ import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
+
 import java.io.Serializable;
 
 public class Proyecto implements Serializable {
@@ -11,9 +12,11 @@ public class Proyecto implements Serializable {
      private static final long serialVersionUID = 1L;
 
      final int MAX_VENDEDORES=10;
-
+     Vendedor vendedor;
      ListaSimple<Vendedor> listaVendedores = new ListaSimple<>();
-     private GrafoNoDirigido<Vendedor> grafoVendedores;
+     private GrafoNoDirigido<Vendedor> grafoVendedores ;
+
+
 
 
      public Proyecto() {
@@ -67,6 +70,11 @@ public class Proyecto implements Serializable {
 
           producto.getListaMeGusta().agregarInicio(meGusta);
           return -1;
+     }
+
+     public void agregarContactos (Vendedor vendedores){
+
+          vendedor.agregarContactos(vendedores);
      }
 
      public ListaSimple<Vendedor> getListaVendedores() {
