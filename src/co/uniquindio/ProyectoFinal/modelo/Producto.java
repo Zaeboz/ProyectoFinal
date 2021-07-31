@@ -37,9 +37,15 @@ public class Producto implements Serializable, Comparable<Producto> {
         hora = hourFormat.format(date);
     }
 
-    public void recibirComentario(Comentario comentario)
+    /**
+     * Metodo para guardar los comentarios realizados a la publicación
+     * @param comentario descripcion del comentario
+     * @param vendedor informacion del vendedor que comentó
+     */
+    public void recibirComentario(String comentario, Vendedor vendedor)
     {
-        listaComentarios.agregarfinal(comentario);
+        Comentario comentario1 = new Comentario(vendedor, comentario);
+        listaComentarios.agregarfinal(comentario1);
     }
 
 
