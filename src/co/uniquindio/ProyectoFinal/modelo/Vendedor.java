@@ -85,6 +85,18 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+    public int obtenerTotalProductos() {
+        return arbolProductos.getPeso();
+    }
+
+
+    /**
+     * Metodo para saber el top 10 de los productos con más me gusta
+     * Este metodo es para lo de las estadisticas pero aun no lo hago
+     */
+    public void retornarTopDiezProductos(){
+          arbolProductos.inorden();
+    }
 
 
     //public void publicarProducto(Producto producto){

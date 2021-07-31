@@ -77,12 +77,17 @@ public class Proyecto implements Serializable {
      }
 
 
-     public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
+     /**
+      * Metodo para la sugerencia de amigo
+      * @param nombre
+      * @return
+      */
+     public ListaSimple<Vendedor> sugerirVendedor(String nombre) {
 
           ListaSimple<Vendedor>vendedores= new ListaSimple<>();
           try {
-               for(int i=0;i<grafoVendedores.getSizeNodo(nombreOrigen);i++) {
-                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombreOrigen, i).getValorNodo());
+               for(int i=0;i<grafoVendedores.getSizeNodo(nombre);i++) {
+                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombre, i).getValorNodo());
                }
                return vendedores;
           } catch (ErrorExisteNodo e) {
@@ -124,6 +129,45 @@ public class Proyecto implements Serializable {
           }
 
      }
+
+     /**
+      * Metodo para saber la cantidad de productos publicados por vendedor
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de publicaciones
+      * @return
+      */
+     public int retornarCantidadProductosPorVendedor(String nombre){
+         Vendedor vendedorA = buscarVendedor(nombre);
+         return vendedorA.arbolProductos.getPeso();
+     }
+
+     /**
+      * Metodo para saber el porcentaje de productos publicados por vendedor
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de publicaciones
+      * @return
+      */
+     public int retornarPorcentajeProductosPorVendedor(String nombre){
+          int total = vendedor.obtenerTotalProductos();
+
+          Vendedor vendedorA = buscarVendedor(nombre);
+          int porcentaje= (vendedorA.arbolProductos.getPeso() * total)/100;
+
+          return porcentaje;
+     }
+
+     /**
+      * Metodo para saber la cantidad de contactos por usuario
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de contactos
+      * @return
+      */
+     public int retornarCantidadContactosPorVendedor(String nombre){
+          Vendedor vendedorA = buscarVendedor(nombre);
+          return vendedorA.contactos.getTamanio();
+     }
+
+
 
 
 
