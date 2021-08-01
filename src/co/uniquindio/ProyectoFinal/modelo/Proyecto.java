@@ -97,7 +97,12 @@ public class Proyecto implements Serializable {
      }
 
 
-
+     /**
+      * Metoto que permite agregar amigos
+      * @param nombre nombre del amigo a agregar
+      * @param amigo amigo
+      * @throws NombreRepetidoException
+      */
      public void agregarAmigos (String nombre, Vendedor amigo) throws NombreRepetidoException {
 
           Vendedor vendedorExistente = buscarVendedor(nombre);

@@ -37,6 +37,14 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         getListaMensajes().put(date,mensajes);
     }
 
+
+    /**
+     * Metodo que permite crear un producto
+     * @param nombre nombre del producto
+     * @param nombreCategoria nombre de su categoria
+     * @return boolean
+     * @throws NombreRepetidoException
+     */
     public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
 
         Producto nuevoProducto =  null;
@@ -58,7 +66,10 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return p;
     }
 
-
+    /**
+     * metodo para agregar contactos
+     * @param vendedor contacto a agregar
+     */
     public void agregarContactos (Vendedor vendedor){
 
         getContactos().agregarfinal(vendedor);
