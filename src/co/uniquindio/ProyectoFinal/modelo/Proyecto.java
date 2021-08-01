@@ -105,7 +105,7 @@ public class Proyecto implements Serializable {
       */
      public void agregarAmigos (String nombre, Vendedor amigo) throws NombreRepetidoException {
 
-          Vendedor vendedorExistente = buscarVendedor(nombre);
+          Vendedor vendedorExistente = buscarAmigo(nombre);
           Vendedor vendedores;
           if (vendedorExistente!=null ){
                throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
@@ -120,6 +120,26 @@ public class Proyecto implements Serializable {
           }
 
      }
+
+    /**
+     * Metodo para buscar a un amigo
+     * @param nombre nombre del amigo a buscar
+     * @return vendedor
+     * @throws NombreRepetidoException
+     */
+    public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {
+
+        Vendedor vendedores;
+        for(int i=0;i<vendedor.getContactos().getTamanio();i++) {
+            vendedores=vendedor.getContactos().obtenerValorNodo(i);
+            if(vendedores.getNombreVendedor().equals(nombre))  {
+                return vendedor;
+            }
+        }
+
+        return null;
+
+    }
 
      /**
       * Metodo para saber la cantidad de productos publicados por vendedor
