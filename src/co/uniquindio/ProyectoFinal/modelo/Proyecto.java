@@ -3,6 +3,7 @@ package co.uniquindio.ProyectoFinal.modelo;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.GrafoNoDirigido;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 
+import co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo;
 import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
@@ -103,7 +104,7 @@ public class Proyecto implements Serializable {
       * @param amigo amigo
       * @throws NombreRepetidoException
       */
-     public void agregarAmigos (String nombre, Vendedor amigo) throws NombreRepetidoException {
+     public void agregarAmigos (String nombre, Vendedor amigo) throws NombreRepetidoException, ErrorExisteNodo {
 
           Vendedor vendedorExistente = buscarAmigo(nombre);
           Vendedor vendedores;
@@ -111,10 +112,13 @@ public class Proyecto implements Serializable {
                throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
           }else {
                for (int i = 0; i < grafoVendedores.getSize(); i++) {
-                    vendedores = grafoVendedores.getDato(i);
+
+                   vendedores = grafoVendedores.getDatoN(nombre);
+
                     if (vendedores.getNombreVendedor().equals(nombre)) {
-                         vendedor.agregarContactos(vendedores);
-                         amigo.agregarContactos(vendedores);
+                         //vendedor.agregarContactos(vendedores);
+                        // amigo.agregarContactos(vendedores);
+                         grafoVendedores.insertarArista(vendedores,amigo);
                     }
                }
           }
