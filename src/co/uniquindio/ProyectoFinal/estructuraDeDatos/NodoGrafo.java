@@ -7,7 +7,7 @@ public class NodoGrafo <T> implements Serializable {
     private ListaDoble<Arista> grupoNodos;
     private T valorNodo;
 
-    public NodoGrafo ()
+    public NodoGrafo (T valorNodo)
     {
         this.valorNodo = valorNodo;
         this.grupoNodos = new ListaDoble<Arista>();

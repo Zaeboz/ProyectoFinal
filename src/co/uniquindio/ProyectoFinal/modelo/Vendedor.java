@@ -24,6 +24,11 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
+    /**
+     * Metodo constructor de la clase Vendedor
+     * @param nombreVendedor nombre del vendedor
+     * @param arbolProductos lista de productos del vendedor
+     */
     public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
         this.nombreVendedor = nombreVendedor;
         this.arbolProductos = arbolProductos;
@@ -75,7 +80,7 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
     public void agregarMeGustaRealizados (){
 
         MeGusta meGusta= new MeGusta();
-        
+
     }
 
 

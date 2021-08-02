@@ -130,6 +130,7 @@ public class Proyecto implements Serializable {
 
      }
 
+
      /**
       * Metodo para saber la cantidad de productos publicados por vendedor
       * Metodo para las estadisticas

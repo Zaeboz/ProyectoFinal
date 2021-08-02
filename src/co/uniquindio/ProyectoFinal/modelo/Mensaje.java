@@ -15,6 +15,11 @@ public class Mensaje  implements Serializable {
     public Mensaje() {
     }
 
+    /**
+     * Metodo constructor de la clase Mensaje
+     * @param vendedorFinal
+     * @param mensaje
+     */
     public Mensaje(Vendedor vendedorFinal, String mensaje) {
         this.vendedorFinal = vendedorFinal;
         this.mensaje = mensaje;

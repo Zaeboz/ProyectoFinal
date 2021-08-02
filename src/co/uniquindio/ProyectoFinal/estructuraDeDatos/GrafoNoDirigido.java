@@ -127,12 +127,15 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      * @param nodo2 Otro extremo de la arista
      * @return true. Si y solo si la arista no existe previamente
      **/
-    public boolean insertarArista(NodoGrafo nodo1, NodoGrafo nodo2)
+        public boolean insertarArista(T nodo1, T nodo2)
     {
-        Arista arista = new Arista(nodo1, nodo2);
+        NodoGrafo<T> nuevoOrigen = new NodoGrafo<>(nodo1);
+        NodoGrafo<T> nuevoDestino = new NodoGrafo<>(nodo1);
+
+        Arista arista = new Arista(nuevoOrigen, nuevoDestino);
         aristas.put(arista.hashCode(), arista);
-        nodo1.insertarVecino(arista);
-        nodo1.insertarVecino(arista);
+        nuevoOrigen.insertarVecino(arista);
+        nuevoDestino.insertarVecino(arista);
         return true;
     }
 

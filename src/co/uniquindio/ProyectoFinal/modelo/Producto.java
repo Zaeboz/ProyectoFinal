@@ -19,6 +19,12 @@ public class Producto implements Serializable, Comparable<Producto> {
     public Producto() {
     }
 
+
+    /**
+     * Metodo constructor de la clase Producto
+     * @param nombre nombre del producto
+     * @param categoria información de la categoria del producto
+     */
     public Producto(String nombre, Categoria categoria) {
         this.nombre = nombre;
         this.categoria = categoria;

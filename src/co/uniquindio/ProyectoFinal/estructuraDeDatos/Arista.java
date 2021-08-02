@@ -8,7 +8,7 @@ package co.uniquindio.ProyectoFinal.estructuraDeDatos;
 
 import java.io.Serializable;
 
-public class Arista implements Comparable<Arista>, Serializable {
+public class Arista<T> implements Comparable<Arista>, Serializable {
 
     private NodoGrafo nodo1, nodo2;
 
