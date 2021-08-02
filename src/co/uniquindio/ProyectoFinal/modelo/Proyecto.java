@@ -96,40 +96,53 @@ public class Proyecto implements Serializable {
           }
      }
 
-     public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {
-          ListaSimple<Vendedor>sugerenciasVendedores;
-          sugerenciasVendedores= sugerirVendedor(nombre);
-          Vendedor vendedores;
-          for(int i=0;i<sugerenciasVendedores.getTamanio();i++) {
-               vendedores=sugerenciasVendedores.obtenerValorNodo(i);
-               if(vendedores.getNombreVendedor().equals(nombre))  {
-                    return vendedor;
-               }
-          }
 
-          return null;
-
-     }
-
-     public void agregarAmigos (String nombre) throws NombreRepetidoException {
+     /**
+      * Metoto que permite agregar amigos
+      * @param nombre nombre del amigo a agregar
+      * @param amigo amigo
+      * @throws NombreRepetidoException
+      */
+     public void agregarAmigos (String nombre, Vendedor amigo) throws NombreRepetidoException {
 
           Vendedor vendedorExistente = buscarAmigo(nombre);
-          ListaSimple<Vendedor>sugerenciasVendedores;
-          sugerenciasVendedores= sugerirVendedor(nombre);
           Vendedor vendedores;
           if (vendedorExistente!=null ){
                throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
           }else {
-               for (int i = 0; i < sugerenciasVendedores.getTamanio(); i++) {
-                    vendedores = sugerenciasVendedores.obtenerValorNodo(i);
+               for (int i = 0; i < grafoVendedores.getSize(); i++) {
+                    vendedores = grafoVendedores.getDato(i);
                     if (vendedores.getNombreVendedor().equals(nombre)) {
                          vendedor.agregarContactos(vendedores);
+                         amigo.agregarContactos(vendedores);
                     }
                }
           }
 
      }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Metodo para buscar a un amigo
+     * @param nombre nombre del amigo a buscar
+     * @return vendedor
+     * @throws NombreRepetidoException
+     */
+    public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {
+
+        Vendedor vendedores;
+        for(int i=0;i<vendedor.getContactos().getTamanio();i++) {
+            vendedores=vendedor.getContactos().obtenerValorNodo(i);
+            if(vendedores.getNombreVendedor().equals(nombre))  {
+                return vendedor;
+            }
+        }
+
+        return null;
+
+    }
+>>>>>>> 14f6b40d10d6242a496240a3af3ba13ab3aad153
 
      /**
       * Metodo para saber la cantidad de productos publicados por vendedor
