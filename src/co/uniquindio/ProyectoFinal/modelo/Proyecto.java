@@ -121,8 +121,6 @@ public class Proyecto implements Serializable {
 
      }
 
-<<<<<<< HEAD
-=======
     /**
      * Metodo para buscar a un amigo
      * @param nombre nombre del amigo a buscar
@@ -142,7 +140,6 @@ public class Proyecto implements Serializable {
         return null;
 
     }
->>>>>>> 14f6b40d10d6242a496240a3af3ba13ab3aad153
 
      /**
       * Metodo para saber la cantidad de productos publicados por vendedor
