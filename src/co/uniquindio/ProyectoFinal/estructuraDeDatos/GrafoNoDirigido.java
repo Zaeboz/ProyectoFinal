@@ -130,7 +130,7 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
     public boolean insertarArista(T nodo1, T nodo2)
     {
         NodoGrafo<T> nuevoOrigen = new NodoGrafo<>(nodo1);
-        NodoGrafo<T> nuevoDestino = new NodoGrafo<>(nodo1);
+        NodoGrafo<T> nuevoDestino = new NodoGrafo<>(nodo2);
 
         Arista arista = new Arista(nuevoOrigen, nuevoDestino);
         aristas.put(arista.hashCode(), arista);
