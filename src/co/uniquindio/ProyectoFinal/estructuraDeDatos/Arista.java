@@ -13,44 +13,18 @@ public class Arista<T> implements Comparable<Arista>, Serializable {
     private NodoGrafo nodo1, nodo2;
 
     /**
-     * Constructor de un objeto Arista uniforme
-     * @param nodo2 Extremo o vértice de la arista
-     * @param nodo1 Segundo extremo o vértice para formar la arista
+     * @param nodo1 Extremo o nodo de la arista
+     * @param nodo2 Segundo nodo para formar la arista
      **/
     public Arista(NodoGrafo nodo1, NodoGrafo nodo2)
     {
-        this(nodo1, nodo2, 1);
-        String hola = "";
-        hola.compareTo("");
-    }
-
-    /**
-     * Se detalla la construcción de la arista. El vertice lexicograficamente
-     * menor se representa en la parte superior del grafo (vertice1)
-     * y el vertice cuya etiqueta es lexicograficamente mayor en la inferior (vertice2)
-     *
-     * @param nodo1 Extremo o vértice de la arista
-     * @param nodo2 Segundo vértice para formar la arista
-     * @param peso Define el coste de ir desde el vertice1 al vertice2 y viceversa(arista no dirigida)
-     **/
-    public Arista(NodoGrafo nodo1, NodoGrafo nodo2, int peso)
-    {
-        if(nodo1.getValorNodo().equals(nodo2.getValorNodo()))
-        {
-            this.nodo1 = nodo1;
-            this.nodo2 = nodo2;
-        }
-        else
-        {
-            this.nodo1 = nodo2;
-            this.nodo2 = nodo1;
-        }
-
+        this.nodo1 = nodo1;
+        this.nodo2 = nodo2;
     }
 
 
     /**
-     * Dado un Vértice válido como parámentro de entrada
+     * Dado un nodo válido como parámentro de entrada
      * se devuelve su adyecente. Estos se conectan mediante una arista
      *
      * @param actual

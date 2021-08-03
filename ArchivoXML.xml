@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_111" class="java.beans.XMLDecoder">
+ <object class="co.uniquindio.ProyectoFinal.modelo.Proyecto" id="Proyecto0">
+  <void id="GrafoNoDirigido0" property="grafoVendedores">
+   <void property="nodos">
+    <void method="put">
+     <string>Andrea</string>
+     <object class="co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo">
+      <void property="valorNodo">
+       <object class="co.uniquindio.ProyectoFinal.modelo.Vendedor">
+        <void property="cedula">
+         <string>12345</string>
+        </void>
+        <void property="nombreVendedor">
+         <string>Andrea</string>
+        </void>
+       </object>
+      </void>
+     </object>
+    </void>
+   </void>
+  </void>
+ </object>
+</java>

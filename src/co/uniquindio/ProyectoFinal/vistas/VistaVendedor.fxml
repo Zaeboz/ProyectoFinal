@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPaneVendedor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.ProyectoFinal.controladores.ControladorVendedor">
+   <left>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text layoutX="74.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opciones" />
+            <Button fx:id="perfilButton" layoutX="64.0" layoutY="56.0" minWidth="74.0" mnemonicParsing="false" onAction="#lanzarVistaPerfil" text="Perfil" />
+            <Button fx:id="productosButton" layoutX="64.0" layoutY="107.0" mnemonicParsing="false" onAction="#lanzarVistaProductos" text="Productos" />
+            <Button fx:id="mensajesButton" layoutX="64.0" layoutY="155.0" minWidth="74.0" mnemonicParsing="false" onAction="#lanzarVistaMensajes" text="Mensajes" />
+            <Button fx:id="cerrarButton" layoutX="64.0" layoutY="353.0" minWidth="74.0" mnemonicParsing="false" onAction="#cerrarPerfil" text="Cerrar" AnchorPane.bottomAnchor="22.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="62.0" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>

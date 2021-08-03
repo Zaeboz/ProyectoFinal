@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="341.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.ProyectoFinal.controladores.ControladorCrearPublicacion">
+   <children>
+      <TextArea fx:id="descripcionTextArea" layoutX="106.0" layoutY="34.0" prefHeight="57.0" prefWidth="200.0" />
+      <Text layoutX="11.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discripcion de &#10;la publicacion" />
+      <TableView fx:id="tablaProductos" layoutX="71.0" layoutY="142.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="nombreColumn" prefWidth="199.0" text="Nombre" />
+        </columns>
+      </TableView>
+      <Text layoutX="107.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione un producto" />
+      <Button fx:id="crearButton" layoutX="92.0" layoutY="361.0" minWidth="67.0" mnemonicParsing="false" onAction="#crear" text="Crear" />
+      <Button fx:id="cancelarButton" layoutX="183.0" layoutY="361.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <Text layoutX="82.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creacion de una publicacion" />
+   </children>
+</AnchorPane>

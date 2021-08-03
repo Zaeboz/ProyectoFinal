@@ -5,25 +5,67 @@ import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
 
 public class Vendedor implements Serializable, Comparable<Vendedor> {
     private static final long serialVersionUID = 1L;
     int MAX_VENDEDORES = 9;
-    Mensaje mensaje;
-    String nombreVendedor = new String();
+    private String nombreVendedor = new String();
+    private String cedula = new String();
     ListaSimple<Vendedor> contactos = new ListaSimple<>();
     ListaSimple<Comentario> comentariosHechos = new ListaSimple<>();
     ListaSimple<MeGusta> meGustasRealizados = new ListaSimple<>();
-    HashMap listaMensajes = new HashMap();
+    ListaSimple<Mensaje> listaMensajes = new ListaSimple<>();
     ListaSimple<Vendedor> sugerenciasContactos = new ListaSimple<>();
     ArbolBinario<Producto> arbolProductos = new ArbolBinario<>();
 
     public Vendedor(){
-
     }
 
+    public void eliminarMensajes(Vendedor vendedor){
+        for(Mensaje mensaje: listaMensajes){
+            if(mensaje.getVendedorFinal()==vendedor){
+                listaMensajes.eliminar(mensaje);
+            }
+        }
+    }
+
+    public void recibirMensaje(Mensaje mensaje)
+    {
+        listaMensajes.agregarfinal(mensaje);
+    }
+
+    public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
+        Producto nuevoProducto =  null;
+        Producto productoExistente = buscarProducto(nombre);
+        boolean p =false;
+
+        if(productoExistente != null) {
+            throw new NombreRepetidoException("El nombre del producto  "+nombre+" no se puede crear. Ya existe");
+        }
+        else
+        {
+            Categoria categoria = new Categoria(nombreCategoria);
+            nuevoProducto = new Producto(nombre,categoria);
+            getArbolProductos().agregar(nuevoProducto);
+            p=true;
+
+        }
+
+        return p;
+    }
+
+    public Producto buscarProducto(String nombre) throws NombreRepetidoException {
+
+        Producto producto = null;
+        for(int i=0;i<arbolProductos.getPeso();i++) {
+            producto=arbolProductos.busquedaInorden(producto);
+            if(arbolProductos.equals(nombre))  {
+                return producto;
+            }
+        }
+
+        return null;
+    }
     /**
      * Metodo constructor de la clase Vendedor
      * @param nombreVendedor nombre del vendedor
@@ -35,40 +77,8 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
     }
 
     public void agregarMensajes( Vendedor vendedorFinal, String mensaj){
-
-        Date date= mensaje.generarFechaMensaje();
         Mensaje mensajes = new Mensaje(vendedorFinal,mensaj);
-        vendedorFinal.getListaMensajes().put(date,mensajes);
-        getListaMensajes().put(date,mensajes);
-    }
-
-
-    /**
-     * Metodo que permite crear un producto
-     * @param nombre nombre del producto
-     * @param nombreCategoria nombre de su categoria
-     * @return boolean
-     * @throws NombreRepetidoException
-     */
-    public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
-
-        Producto nuevoProducto =  null;
-        Categoria categoria = new Categoria(nombreCategoria);
-        nuevoProducto = new Producto(nombre,categoria);
-
-        boolean p =false;
-
-        if(buscarProductos(nuevoProducto)!=null) {
-            throw new NombreRepetidoException("El nombre del producto  "+nombre+" no se puede crear. Ya existe");
-        }
-        else
-        {
-            getArbolProductos().agregar(nuevoProducto);
-            p=true;
-
-        }
-
-        return p;
+        listaMensajes.agregarfinal(mensajes);
     }
 
     /**
@@ -86,14 +96,15 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         getComentariosHechos().agregarfinal(comentario);
     }
 
-
-
     public void agregarMeGustaRealizados (){
 
         MeGusta meGusta= new MeGusta();
 
     }
 
+    public void agregarListaMensajes (){
+
+    }
 
     public void agregarSugerenciasContactos(Vendedor vendedor) {
 
@@ -129,7 +140,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public Producto buscarProductos(Producto producto) {
         return arbolProductos.busquedaInorden(producto);
-
     }
 
 
@@ -153,7 +163,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         this.arbolProductos = arbolProductos;
     }
 
-
     public ListaSimple<Vendedor> getContactos() {
         return contactos;
     }
@@ -161,8 +170,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
     public void setContactos(ListaSimple<Vendedor> contactos) {
         this.contactos = contactos;
     }
-
-   
 
     public void setComentariosHechos(ListaSimple<Comentario> comentariosHechos) {
         this.comentariosHechos = comentariosHechos;
@@ -176,9 +183,9 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         this.meGustasRealizados = meGustasRealizados;
     }
 
-
-
-
+    public void setListaMensajes(ListaSimple<Mensaje> listaMensajes) {
+        this.listaMensajes = listaMensajes;
+    }
 
     public ListaSimple<Vendedor> getSugerenciasContactos() {
         return sugerenciasContactos;
@@ -192,21 +199,28 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return MAX_VENDEDORES;
     }
 
-
     public ListaSimple<Comentario> getComentariosHechos() {
         return comentariosHechos;
-    }
-
-    public HashMap getListaMensajes() {
-        return listaMensajes;
-    }
-
-    public void setListaMensajes(HashMap listaMensajes) {
-        this.listaMensajes = listaMensajes;
     }
 
     @Override
     public int compareTo(Vendedor o) {
         return 0;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
+    }
+
+    public void guardarMensaje(Mensaje mensaje) {
+        listaMensajes.agregarfinal(mensaje);
+    }
+
+    public ListaSimple<Mensaje> getListaMensajes() {
+        return listaMensajes;
     }
 }

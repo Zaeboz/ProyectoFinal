@@ -27,7 +27,7 @@ public class NodoArbolBinario<T extends Comparable<T>> {
 	
 	/**
 	 * Agrega un nuevo elemento en el �rbol
-	 * @param elemento Nuevo dato
+	 * @param nuevo Nuevo dato
 	 * @return true si lo pudo guardar
 	 */
 	public boolean agregar(T nuevo) 

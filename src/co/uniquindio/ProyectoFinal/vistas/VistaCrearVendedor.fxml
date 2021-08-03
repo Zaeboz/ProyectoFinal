@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="233.0" prefWidth="299.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.ProyectoFinal.controladores.ControladorCrearVendedor">
+   <children>
+      <TextField fx:id="nombreTextField" layoutX="114.0" layoutY="70.0" />
+      <TextField fx:id="cedulaTextFild" layoutX="114.0" layoutY="117.0" />
+      <Text layoutX="7.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre completo" />
+      <Text layoutX="37.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cedula" />
+      <Text layoutX="81.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creacion de un vendedor" />
+      <Button fx:id="crearVendedorButton" layoutX="81.0" layoutY="173.0" minWidth="60.0" mnemonicParsing="false" onAction="#crear" text="Crear" />
+      <Button fx:id="cancelarButton" layoutX="157.0" layoutY="173.0" mnemonicParsing="false" onAction="#cancelar" text="Cacelar" />
+   </children>
+</AnchorPane>

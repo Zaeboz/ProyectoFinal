@@ -4,16 +4,21 @@ import java.io.Serializable;
 
 public class NodoGrafo <T> implements Serializable {
 
-    private ListaDoble<Arista> grupoNodos;
+    private ListaDoble<Arista> vecindad = new ListaDoble<>();
     private T valorNodo;
+
+
 
     public NodoGrafo (T valorNodo)
     {
         this.valorNodo = valorNodo;
-        this.grupoNodos = new ListaDoble<Arista>();
+        this.vecindad = new ListaDoble<Arista>();
     }
 
     public <T extends Comparable<T>> NodoGrafo(String nombre, T elemento) {
+    }
+
+    public NodoGrafo() {
     }
 
     /**
@@ -23,50 +28,50 @@ public class NodoGrafo <T> implements Serializable {
      */
     public void insertarVecino(Arista arista)
     {
-        if( !this.grupoNodos.contiene(arista))
-            this.grupoNodos.agregarfinal(arista);
+        if( !this.vecindad.contiene(arista))
+            this.vecindad.agregarfinal(arista);
     }
 
     /**
-     * Comprueba si la arista incide en este vertice
+     * Comprueba si la arista incide en este nodo
      * @param arista Objeto a evaluar
-     * @return true. Si y solo si el objeto esta contenido en el array de lista vecindad
+     * @return true Si y solo si el objeto esta contenido en el array de lista vecindad
      */
     public boolean contieneUnVecino(Arista arista)
     {
-        return this.grupoNodos.contiene(arista);
+        return this.vecindad.contiene(arista);
     }
 
     /**
      * @param indice Indica la posicion a extraer
-     * @return Arista. La arista apuntada por el índice en el array de lista vecindad
+     * @return Arista La arista apuntada por el índice en la lista doble de vecindad
      */
     public Arista getVecino(int indice)
     {
-        return this.grupoNodos.obtener(indice);
+        return this.vecindad.obtener(indice);
     }
 
     /**
-     * Se elimina el objeto Arista del array de lista vecindad mediante
+     * Se elimina el objeto Arista de la lista doble de vecindad mediante
      * el identificando la referencia del objeto Arista
      * @param arista indice el objeto Arista a eliminar
      */
     public void eliminarVecino(Arista arista)
     {
-        this.grupoNodos.eliminar(arista);
+        this.vecindad.eliminar(arista);
     }
 
     /**
-     * @return int. Se devuelve el número de aristas incidentes (o vecinos)
-     * tiene el vértice en el array de lista vecindad
+     * @return int Se devuelve el número de aristas incidentes (o vecinos)
+     * tiene el nodo en la lista doble de vecindad
      */
     public int getContarVecinos()
     {
-        return this.grupoNodos.getTamanio();
+        return this.vecindad.getTamanio();
     }
 
     /**
-     * @return String. Devuelve el valor de la cadena etiqueta
+     * @return T Devuelve el valor de la cadena etiqueta
      */
     public T getValorNodo()
     {
@@ -74,34 +79,34 @@ public class NodoGrafo <T> implements Serializable {
     }
 
     /**
-     * Se comprueba si vertice2 es un objeto de tipo Vertice
-     * En tal caso podemos convertirlo de Object a Vertice
-     * Y por último evaluamos si contiene el mismo valor que el objeto vertice actual
-     * Para ello las etiquetas deben coincidir(son únicas para cada objeto Vertice)
-     * @param vertice2 Objeto que comparamos con el vertice para
+     * Se comprueba si nodo2 es un objeto de tipo NodoGrafo
+     * En tal caso podemos convertirlo de Object a NodoGrafo
+     * Y por último evaluamos si contiene el mismo valor que el objeto nodo actual
+     * Para ello las etiquetas deben coincidir(son únicas para cada objeto NodoGrafo)
+     * @param nodo2 Objeto que comparamos con el nodo para
      * evaluar si son el mismo objeto
-     * @return true. Efectivamente son el mismo objeto
+     * @return true Efectivamente son el mismo objeto
      */
-    public boolean equals(Object vertice2)
+    public boolean equals(Object nodo2)
     {
-        if( !(vertice2 instanceof NodoGrafo))
+        if( !(nodo2 instanceof NodoGrafo))
             return false;
 
-        NodoGrafo v = (NodoGrafo) vertice2;
+        NodoGrafo v = (NodoGrafo) nodo2;
         return this.valorNodo.equals(v.valorNodo);
     }
 
     /**
-     * @return String. Representación del vértice en una cadena
+     * @return String. Representación del nodo en una cadena
      */
     public String toString()
     {
-        return "Vertice: " + this.valorNodo;
+        return "Nodo: " + this.valorNodo;
     }
 
 
     /**
-     * @return int. Código hash para este vértice
+     * @return int. Código hash para este nodo
      **/
     public int hashCode()
     {
@@ -109,11 +114,11 @@ public class NodoGrafo <T> implements Serializable {
     }
 
     /**
-     * @return ArrayList<Arista>. Copia del array de lista vecindad
+     * @return ListaDoble<Arista> Copia de la lista doble de vecindad
      */
     public ListaDoble<Arista> getVecinos()
     {
-        return this.grupoNodos;
+        return this.vecindad;
     }
 
     public void setValorNodo(T valorNodo) {
@@ -121,10 +126,10 @@ public class NodoGrafo <T> implements Serializable {
     }
 
     public int getSize() {
-        return grupoNodos.getTamanio();
+        return vecindad.getTamanio();
     }
 
     public NodoGrafo<T> seguirEnlace(int indice) {
-        return grupoNodos.obtener(indice).getNodo2();
+        return vecindad.obtener(indice).getNodo2();
     }
 }
