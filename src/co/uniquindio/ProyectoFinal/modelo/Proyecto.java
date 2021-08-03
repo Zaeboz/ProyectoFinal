@@ -98,24 +98,24 @@ public class Proyecto implements Serializable {
      }
 
 
-     /**
-      * Metoto que permite agregar amigos
-      * @param nombre nombre del amigo a agregar
-      * @param amigo amigo
-      * @throws NombreRepetidoException
-      */
-     public void agregarAmigos (Vendedor vendedorOrigen, Vendedor amigo) throws NombreRepetidoException, ErrorExisteNodo {
+    /**
+     * Metodo que permite agregar un amigo
+     * @param vendedorOrigen vendedor origen
+     * @param amigo amigo que se va a agregar
+     * @throws NombreRepetidoException
+     */
+    public void agregarAmigos (Vendedor vendedorOrigen, Vendedor amigo) throws NombreRepetidoException{
 
-          Vendedor vendedorExistente = buscarVendedor(vendedorOrigen.getNombreVendedor());
+        Vendedor vendedorExistente = buscarVendedor(amigo.getNombreVendedor());
 
-          if (vendedorExistente == null ){
+
+        if (vendedorExistente == null ){
                throw new NombreRepetidoException(amigo.getNombreVendedor()+" este vendedor no esta disponible. No existe");
           }else{
 
               amigo.agregarContactos(vendedorOrigen);
               vendedorOrigen.agregarContactos(amigo);
               grafoVendedores.insertarArista(vendedorOrigen, amigo);
-
           }
 
      }
@@ -176,8 +176,6 @@ public class Proyecto implements Serializable {
           Vendedor vendedorA = buscarVendedor(nombre);
           return vendedorA.contactos.getTamanio();
      }
-
-
 
 
 
