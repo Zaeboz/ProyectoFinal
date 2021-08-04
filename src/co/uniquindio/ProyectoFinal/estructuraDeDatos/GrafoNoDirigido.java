@@ -130,19 +130,21 @@ public class GrafoNoDirigido<T extends Comparable<T>> implements Serializable {
      **/
     public boolean insertarArista(NodoGrafo nodo1, NodoGrafo nodo2)
     {
-        if(nodo1.equals(nodo2)) //nodos identicos?
+        if (nodo1.equals(nodo2)) {
             return false;
-
-        Arista arista = new Arista(nodo1, nodo2);
-        if(aristas.containsKey(arista.hashCode())) //arista ya está en el grafo?
-            return false;
-        else if( nodo1.contieneUnVecino(arista) || nodo2.contieneUnVecino(arista)) //arista ya une a nodo1 o nodo2?
-            return false;
-
-        aristas.put(arista.hashCode(), arista);
-        nodo1.insertarVecino(arista);
-        nodo2.insertarVecino(arista);
-        return true;
+        } else {
+            Arista arista = new Arista(nodo1, nodo2);
+            if (this.aristas.containsKey(arista.hashCode())) {
+                return false;
+            } else if (!nodo1.contieneUnVecino(arista) && !nodo2.contieneUnVecino(arista)) {
+                this.aristas.put(arista.hashCode(), arista);
+                nodo1.insertarVecino(arista);
+                nodo2.insertarVecino(arista);
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     /**

@@ -5,8 +5,6 @@ import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Vendedor implements Serializable, Comparable<Vendedor> {
     private static final long serialVersionUID = 1L;
@@ -19,10 +17,8 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
     ListaSimple<Mensaje> listaMensajes = new ListaSimple<>();
     ListaSimple<Vendedor> sugerenciasContactos = new ListaSimple<>();
     ArbolBinario<Producto> arbolProductos = new ArbolBinario<>();
-    private Mensaje mensaje;
 
     public Vendedor(){
-
     }
 
     public void eliminarMensajes(Vendedor vendedor){
@@ -33,10 +29,9 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         }
     }
 
-    public void agregarMensajes( Vendedor vendedorFinal, String mensaj){
-        Mensaje mensajes = new Mensaje(vendedorFinal,mensaj);
-        //vendedorFinal.getListaMensajes().put(date,mensajes);
-        //getListaMensajes().put(date,mensajes);
+    public void recibirMensaje(Mensaje mensaje)
+    {
+        listaMensajes.agregarfinal(mensaje);
     }
 
     public boolean crearProductos(String nombre, String nombreCategoria) throws NombreRepetidoException {
@@ -71,14 +66,31 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
         return null;
     }
+    /**
+     * Metodo constructor de la clase Vendedor
+     * @param nombreVendedor nombre del vendedor
+     * @param arbolProductos lista de productos del vendedor
+     */
+    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
+        this.nombreVendedor = nombreVendedor;
+        this.arbolProductos = arbolProductos;
+    }
 
+    public void agregarMensajes( Vendedor vendedorFinal, String mensaj){
+        Mensaje mensajes = new Mensaje(vendedorFinal,mensaj);
+        listaMensajes.agregarfinal(mensajes);
+    }
+
+    /**
+     * metodo para agregar contactos
+     * @param vendedor contacto a agregar
+     */
     public void agregarContactos (Vendedor vendedor){
 
         getContactos().agregarfinal(vendedor);
     }
 
     public void agregarComentariosHechos (){
-
 
         Comentario comentario = new Comentario();
         getComentariosHechos().agregarfinal(comentario);
@@ -92,8 +104,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public void agregarListaMensajes (){
 
-        Mensaje mensaje = new Mensaje();
-        getListaMensajes().agregarfinal(mensaje);
     }
 
     public void agregarSugerenciasContactos(Vendedor vendedor) {
@@ -102,14 +112,23 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     }
 
-    public Vendedor(String nombreVendedor, ArbolBinario<Producto> arbolProductos) {
-        this.nombreVendedor = nombreVendedor;
-        this.arbolProductos = arbolProductos;
+    public int obtenerTotalProductos() {
+        return arbolProductos.getPeso();
     }
 
-    public void publicarProducto(Producto producto){
-        arbolProductos.agregar(producto);
+
+    /**
+     * Metodo para saber el top 10 de los productos con más me gusta
+     * Este metodo es para lo de las estadisticas pero aun no lo hago
+     */
+    public void retornarTopDiezProductos(){
+          arbolProductos.inorden();
     }
+
+
+    //public void publicarProducto(Producto producto){
+    //    arbolProductos.agregar(producto);
+    //}
 
     public void comentarProductos(Comentario comentario){
         comentariosHechos.agregarfinal(comentario);
@@ -184,10 +203,6 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
         return comentariosHechos;
     }
 
-    public ListaSimple<Mensaje> getListaMensajes() {
-        return listaMensajes;
-    }
-
     @Override
     public int compareTo(Vendedor o) {
         return 0;
@@ -203,5 +218,9 @@ public class Vendedor implements Serializable, Comparable<Vendedor> {
 
     public void guardarMensaje(Mensaje mensaje) {
         listaMensajes.agregarfinal(mensaje);
+    }
+
+    public ListaSimple<Mensaje> getListaMensajes() {
+        return listaMensajes;
     }
 }

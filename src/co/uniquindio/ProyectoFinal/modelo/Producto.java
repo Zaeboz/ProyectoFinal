@@ -23,6 +23,12 @@ public class Producto implements Serializable, Comparable<Producto> {
     public Producto() {
     }
 
+
+    /**
+     * Metodo constructor de la clase Producto
+     * @param nombre nombre del producto
+     * @param categoria información de la categoria del producto
+     */
     public Producto(String nombre, Categoria categoria) {
         this.nombre = nombre;
         this.categoria = categoria;
@@ -40,12 +46,28 @@ public class Producto implements Serializable, Comparable<Producto> {
         return 0;
     }
 
-    public void recibirComentario(Comentario comentario)
+    public void recibirComentario(Comentario comentario){
+
+    }
+
+    /**
+     * Metodo para guardar los comentarios realizados a la publicación
+     * @param comentario descripcion del comentario
+     * @param vendedor informacion del vendedor que comentó
+     */
+    public void recibirComentario(String comentario, Vendedor vendedor)
     {
-        listaComentarios.agregarfinal(comentario);
+        Comentario comentario1 = new Comentario(vendedor, comentario);
+        listaComentarios.agregarfinal(comentario1);
     }
 
 
+    /**
+     * Método para guardar los me gustas realizados
+     * si el nombre del que realizó el me gusta ya esta registrado en la lista, lo borra.
+     * @param meGusta infomación del me gusta recibido
+     * @return true si guardó la información, false si la información ya estaba y la borro
+     */
     public boolean recibirMeGusta(MeGusta meGusta)
     {
         boolean centinela = true;
@@ -65,10 +87,18 @@ public class Producto implements Serializable, Comparable<Producto> {
         return centinela;
     }
 
+    /**
+     * Metodo para obtener la cantidad de me gustas en una publicacion
+     * @return
+     */
     public int obtenerTotalMeGustas() {
         return listaMeGusta.getTamanio();
     }
 
+    /**
+     * Metodo para obtener la cantidad de me comentarios en una publicacion
+     * @return
+     */
     public int obtenerTotalComentarios() {
         return listaComentarios.getTamanio();
     }

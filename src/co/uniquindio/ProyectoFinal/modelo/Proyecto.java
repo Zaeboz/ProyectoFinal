@@ -9,7 +9,17 @@ import co.uniquindio.ProyectoFinal.persistencia.Persistencia;
 
 import java.io.Serializable;
 import java.util.List;
+import co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo;
+import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
+import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 
+import co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo;
+import co.uniquindio.ProyectoFinal.excepciones.*;
+
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.HashMap;
 public class Proyecto implements Serializable {
 
      private static final long serialVersionUID = 1L;
@@ -21,6 +31,13 @@ public class Proyecto implements Serializable {
      public Proyecto() {
      }
 
+     /**
+      * Metodo para crear un nuevo vendedor, el limite de vendedores que
+      * pueden ser creados es de 10
+      * @param vendedorNuevo nombre del vendedor a crear
+      * @return
+      * @throws NombreRepetidoException
+      */
      public Vendedor crearVendedores(Vendedor vendedorNuevo) throws NombreRepetidoException {
           String nombreVededorNuevo = vendedorNuevo.getNombreVendedor();
           Vendedor vendedorExistente = buscarVendedor(nombreVededorNuevo);
@@ -37,28 +54,32 @@ public class Proyecto implements Serializable {
           return null;
      }
 
-     public Vendedor buscarVendedor(String nombre) {
-
-          Vendedor vendedorAux = null;
+     /**
+      * Metodo para buscar un vendedor en la lista de vendedores creados
+      * @param nombreV nombre del vendedor a buscar
+      * @return
+      */
+     public Vendedor buscarVendedor(String nombreV) {
           try {
-               vendedorAux = grafoVendedores.getDatoN(nombre);
-               if(vendedorAux == null){
-                    return null;
-               }else{
-                    return vendedorAux;
-               }
-          } catch (ErrorExisteNodo errorExisteNodo) {
-               System.out.println(errorExisteNodo.getMessage());
+               return grafoVendedores.getDatoN(nombreV);
+          } catch (ErrorExisteNodo e) {
+               e.printStackTrace();
+               return null;
           }
-          return null;
      }
 
-     public ListaSimple<Vendedor> sugerirVendedor(String nombreOrigen) {
+
+     /**
+      * Metodo para la sugerencia de amigo
+      * @param nombre
+      * @return
+      */
+     public ListaSimple<Vendedor> sugerirVendedor(String nombre) {
 
           ListaSimple<Vendedor>vendedores= new ListaSimple<>();
           try {
-               for(int i=0;i<grafoVendedores.getSizeNodo(nombreOrigen);i++) {
-                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombreOrigen, i).getValorNodo());
+               for(int i=0;i<grafoVendedores.getSizeNodo(nombre);i++) {
+                    vendedores.agregarfinal(grafoVendedores.seguirEnlace(nombre, i).getValorNodo());
                }
                return vendedores;
           } catch (ErrorExisteNodo e) {
@@ -70,12 +91,12 @@ public class Proyecto implements Serializable {
      public void agregarAmigos (String nombre) throws NombreRepetidoException {
 
           Vendedor vendedorExistente = buscarAmigo(nombre);
-          ListaSimple<Vendedor>sugerenciasVendedores;
-          sugerenciasVendedores= sugerirVendedor(nombre);
+          ListaSimple<Vendedor> sugerenciasVendedores;
+          sugerenciasVendedores = sugerirVendedor(nombre);
           Vendedor vendedores;
-          if (vendedorExistente!=null ){
-               throw new NombreRepetidoException(nombre+" este vendedor ya es tu amigo. Ya existe");
-          }else{
+          if (vendedorExistente != null) {
+               throw new NombreRepetidoException(nombre + " este vendedor ya es tu amigo. Ya existe");
+          } else {
                for (int i = 0; i < sugerenciasVendedores.getTamanio(); i++) {
                     vendedores = sugerenciasVendedores.obtenerValorNodo(i);
                     if (vendedores.getNombreVendedor().equals(nombre)) {
@@ -85,6 +106,32 @@ public class Proyecto implements Serializable {
           }
      }
 
+    /**
+     * Metodo que permite agregar un amigo
+     * @param vendedorOrigen vendedor origen
+     * @param amigo amigo que se va a agregar
+     * @throws NombreRepetidoException
+     */
+     public void agregarAmigos (Vendedor vendedorOrigen, Vendedor amigo) throws NombreRepetidoException{
+
+          Vendedor vendedorExistente = buscarVendedor(amigo.getNombreVendedor());
+
+          if (vendedorExistente == null ){
+               throw new NombreRepetidoException(amigo.getNombreVendedor()+" este vendedor no esta disponible. No existe");
+          }else{
+
+              amigo.agregarContactos(vendedorOrigen);
+              vendedorOrigen.agregarContactos(amigo);
+              //grafoVendedores.insertarArista(vendedorOrigen, amigo);
+          }
+     }
+
+     /**
+      * Metodo para buscar a un amigo
+      * @param nombre nombre del amigo a buscar
+      * @return vendedor
+      * @throws NombreRepetidoException
+      */
      public Vendedor buscarAmigo(String nombre) throws NombreRepetidoException {
           ListaSimple<Vendedor>sugerenciasVendedores;
           sugerenciasVendedores= sugerirVendedor(nombre);
@@ -96,6 +143,43 @@ public class Proyecto implements Serializable {
                }
           }
           return null;
+     }
+
+     /**
+      * Metodo para saber la cantidad de productos publicados por vendedor
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de publicaciones
+      * @return
+      */
+     public int retornarCantidadProductosPorVendedor(String nombre){
+         Vendedor vendedorA = buscarVendedor(nombre);
+         return vendedorA.arbolProductos.getPeso();
+     }
+
+     /**
+      * Metodo para saber el porcentaje de productos publicados por vendedor
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de publicaciones
+      * @return
+      */
+     public int retornarPorcentajeProductosPorVendedor(String nombre){
+          int total = vendedor.obtenerTotalProductos();
+
+          Vendedor vendedorA = buscarVendedor(nombre);
+          int porcentaje= (vendedorA.arbolProductos.getPeso() * total)/100;
+
+          return porcentaje;
+     }
+
+     /**
+      * Metodo para saber la cantidad de contactos por usuario
+      * Metodo para las estadisticas
+      * @param nombre nombre del vendedor del cual se quiere saber la cantidad de contactos
+      * @return
+      */
+     public int retornarCantidadContactosPorVendedor(String nombre){
+          Vendedor vendedorA = buscarVendedor(nombre);
+          return vendedorA.contactos.getTamanio();
      }
 
      public ListaSimple<Vendedor> getListaVendedores() {
@@ -206,4 +290,3 @@ public class Proyecto implements Serializable {
 
      }
 }
-

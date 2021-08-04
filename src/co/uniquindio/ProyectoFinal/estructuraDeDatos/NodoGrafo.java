@@ -7,13 +7,18 @@ public class NodoGrafo <T> implements Serializable {
     private ListaDoble<Arista> vecindad = new ListaDoble<>();
     private T valorNodo;
 
-    public NodoGrafo ()
+
+
+    public NodoGrafo (T valorNodo)
     {
         this.valorNodo = valorNodo;
         this.vecindad = new ListaDoble<Arista>();
     }
 
     public <T extends Comparable<T>> NodoGrafo(String nombre, T elemento) {
+    }
+
+    public NodoGrafo() {
     }
 
     /**
