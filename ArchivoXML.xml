@@ -4,40 +4,6 @@
   <void id="GrafoNoDirigido0" property="grafoVendedores">
    <void property="nodos">
     <void method="put">
-     <string>Camilo</string>
-     <object class="co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo">
-      <void property="valorNodo">
-       <object class="co.uniquindio.ProyectoFinal.modelo.Vendedor" id="Vendedor0">
-        <void property="cedula">
-         <string>1234</string>
-        </void>
-        <void property="listaMensajes">
-         <void property="nodoPrimero">
-          <object class="co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo" id="Nodo0">
-           <void property="valorNodo">
-            <object class="co.uniquindio.ProyectoFinal.modelo.Mensaje">
-             <void property="vendedorFinal">
-              <null/>
-             </void>
-            </object>
-           </void>
-          </object>
-         </void>
-         <void property="nodoUltimo">
-          <object idref="Nodo0"/>
-         </void>
-         <void property="tamanio">
-          <int>1</int>
-         </void>
-        </void>
-        <void property="nombreVendedor">
-         <string>Camilo</string>
-        </void>
-       </object>
-      </void>
-     </object>
-    </void>
-    <void method="put">
      <string>Andrea</string>
      <object class="co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo">
       <void property="valorNodo">

@@ -8,18 +8,6 @@ import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
 import co.uniquindio.ProyectoFinal.persistencia.Persistencia;
 
 import java.io.Serializable;
-import java.util.List;
-import co.uniquindio.ProyectoFinal.estructuraDeDatos.NodoGrafo;
-import co.uniquindio.ProyectoFinal.excepciones.ErrorExisteNodo;
-import co.uniquindio.ProyectoFinal.excepciones.NombreRepetidoException;
-
-import co.uniquindio.ProyectoFinal.estructuraDeDatos.Nodo;
-import co.uniquindio.ProyectoFinal.excepciones.*;
-
-
-import java.io.Serializable;
-import java.util.Date;
-import java.util.HashMap;
 public class Proyecto implements Serializable {
 
      private static final long serialVersionUID = 1L;
