@@ -39,21 +39,26 @@ public class ArbolBinario<T extends Comparable<T>> {
 	/**
 	 * Realiza el recorrido inorden en el �rbol binario
 	 */
-	public void inorden() {
-		inorden(raiz);
+	public ListaSimple<T> inorden() {
+		ListaSimple<T> contenido = new ListaSimple<>();
+		contenido = inorden(raiz, contenido);
 		System.out.println();
+		return contenido;
 	}
 	
 	/**
 	 * Realiza el recorrido inorden en el �rbol binario
 	 * @param n NodoArbolBinario ra�z
+	 * @return
 	 */
-	private void inorden(NodoArbolBinario<T> n) {
+	private ListaSimple<T> inorden(NodoArbolBinario<T> n, ListaSimple<T> contenido) {
 		if(n!=null) {
-			inorden(n.getIzquierdo());
+			inorden(n.getIzquierdo(), contenido);
 			System.out.print(n.getElemento()+"\t");
-			inorden(n.getDerecho());
+			contenido.agregarfinal(n.getElemento());
+			inorden(n.getDerecho(), contenido);
 		}
+		return contenido;
 	}
 
 

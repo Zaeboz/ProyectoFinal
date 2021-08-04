@@ -3,6 +3,10 @@ package co.uniquindio.ProyectoFinal.modelo;
 import co.uniquindio.ProyectoFinal.estructuraDeDatos.ListaSimple;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import java.io.Serializable;
@@ -10,8 +14,8 @@ import java.io.Serializable;
 public class Producto implements Serializable, Comparable<Producto> {
     private static final long serialVersionUID = 1L;
     String nombre = "";
-    String hora = "";
-    String fecha = "";
+    LocalDateTime fecha = null;
+    String fechaString = "";
     Categoria categoria = new Categoria();
     ListaSimple<Comentario> listaComentarios = new ListaSimple<>();
     ListaSimple<MeGusta> listaMeGusta = new ListaSimple<>();
@@ -22,19 +26,18 @@ public class Producto implements Serializable, Comparable<Producto> {
     public Producto(String nombre, Categoria categoria) {
         this.nombre = nombre;
         this.categoria = categoria;
+        generarFechaMensaje();
+    }
+
+    public void generarFechaMensaje() {
+        LocalDate hoy = LocalDate.now();
+        LocalTime ahora = LocalTime.now();
+        fecha = LocalDateTime.of(hoy, ahora);
     }
 
     @Override
     public int compareTo(Producto o) {
         return 0;
-    }
-
-    public void generarFechaPublicacion() {
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss");
-        fecha = dateFormat.format(date);
-        hora = hourFormat.format(date);
     }
 
     public void recibirComentario(Comentario comentario)
@@ -80,22 +83,6 @@ public class Producto implements Serializable, Comparable<Producto> {
         this.nombre = nombre;
     }
 
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
@@ -119,6 +106,11 @@ public class Producto implements Serializable, Comparable<Producto> {
 
     public void setListaMeGusta(ListaSimple<MeGusta> listaMeGusta) {
         this.listaMeGusta = listaMeGusta;
+    }
+
+    public String getFechaString() {
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("yyyy'/'MM'/'dd '-' kk':'mm");
+        return fechaString = fecha.format(f);
     }
 }
 

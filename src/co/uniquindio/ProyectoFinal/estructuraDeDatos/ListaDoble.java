@@ -130,7 +130,7 @@ public class ListaDoble<T> implements Iterable<T>, Serializable {
 		if( indice>=0 && indice<tamanio ) {
 			return true;
 		}
-		throw new RuntimeException("�ndice no v�lido");
+		return false;
 	}
 
 

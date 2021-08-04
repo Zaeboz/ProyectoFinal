@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class NodoGrafo <T> implements Serializable {
 
-    private ListaDoble<Arista> vecindad;
+    private ListaDoble<Arista> vecindad = new ListaDoble<>();
     private T valorNodo;
 
     public NodoGrafo ()
@@ -121,10 +121,10 @@ public class NodoGrafo <T> implements Serializable {
     }
 
     public int getSize() {
-        return grupoNodos.getTamanio();
+        return vecindad.getTamanio();
     }
 
     public NodoGrafo<T> seguirEnlace(int indice) {
-        return grupoNodos.obtener(indice).getNodo2();
+        return vecindad.obtener(indice).getNodo2();
     }
 }
