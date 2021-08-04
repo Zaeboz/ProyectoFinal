@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="273.0" prefWidth="517.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.uniquindio.ProyectoFinal.controladores.ControladorCrearProducto">
+   <children>
+      <TableView fx:id="categoriasTableView" layoutX="30.0" layoutY="45.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="nombreCategoriaColumn" prefWidth="199.0" text="Nombres de las categorias" />
+        </columns>
+      </TableView>
+      <Text layoutX="30.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione una categoria" />
+      <Button fx:id="crearButton" layoutX="293.0" layoutY="145.0" mnemonicParsing="false" onAction="#crear" text="Crear" />
+      <Button fx:id="cancelarButton" layoutX="379.0" layoutY="145.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
+      <TextField fx:id="nombreProductoTextFild" layoutX="342.0" layoutY="61.0" />
+      <Text layoutX="264.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del &#10;producto" />
+   </children>
+</AnchorPane>
